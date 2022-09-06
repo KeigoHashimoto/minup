@@ -1,0 +1,255 @@
+@charset "utf-8";
+body{
+    background: var(--base-color);
+    padding: 0;
+    margin: 0;
+    font-family: 'M PLUS 1p', sans-serif;
+    letter-spacing:1.5px;
+}
+.container{
+    max-width:1000px;
+    margin:0 auto;
+    padding:1.5rem 0;
+}
+
+p{
+    margin: 0;
+}
+
+a{
+    text-decoration:none;
+}
+
+a:hover{
+    color:#777;
+    transition:all .2s;
+}
+
+.pinch{
+    color:var(--danger);
+}
+
+.pinch::after{
+    content:"残り僅か";
+    padding: 1px 5px;
+    margin-left: 5px;
+    background: var(--danger);
+    color:#fff;
+    font-size:.9rem;
+    border-radius:3px;
+}
+.out{
+    color:#999;
+}
+
+.out::after{
+    content:"予算オーバー";
+    padding: 1px 5px;
+    margin-left: 5px;
+    background: #888;
+    color:#fff;
+    font-size:.9rem;
+    border-radius:3px;
+}
+
+:root{
+    --main-color:#A6A6A6;
+    --base-color:#D9D9D9;
+    --submit:#023E73;
+    --danger:#BF0404;
+    --font:#0D0D0D;
+}
+
+/* ログイン サインアップ */
+.form{
+    width: 30%;
+    padding:7rem 3rem;
+    background: #fff;
+    border-radius:10px;
+    margin:1rem auto 1rem;
+}
+@media screen and (max-width:540px){
+    .form{
+        width: 50%;
+    }
+}
+
+.logo{
+    display:block;
+    margin: 0 auto;
+    width: 300px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    width: 80%;
+    margin:1rem auto;
+}
+
+.form-control{
+    width: 100%;
+    border-radius:5px;
+    border:1px solid #777;
+    height:1.3rem
+}
+
+.submit{
+    background: var(--submit);
+    color:#fff;
+    width: 80%;
+    margin: 2rem auto;
+    display: block;
+    height:1.5rem;
+    text-align: center;
+}
+
+.small{
+    color:#333;
+    font-size: 0.7rem;
+    text-align: center;
+    display:block;
+}
+
+.center-title{
+    text-align: center;
+}
+
+/* header */
+header{
+    background: var(--main-color);
+    color:#fff;
+}
+
+.greet{
+    text-align: right;
+    margin-right:2rem;
+    font-size:1.2rem;
+    color:var(--font);
+}
+
+.nav{
+    display:block;
+    margin-left: auto;
+    margin-right: 2rem;
+    font-size:.9rem;
+}
+
+.header-logo{
+    display:block;
+    max-width: 200px;
+    height: auto;
+    margin:0 auto;
+    padding: 1rem 0;
+}
+
+.menu{
+    display:flex;
+    column-gap:2rem;
+    width: fit-content;
+    margin:3rem auto;
+    padding: 1rem;
+}
+
+.menu-item{
+    display:block;
+    width: fit-content;
+    color:#fff;
+}
+/* home */
+.index-budget{
+    display:flex;
+    justify-content: space-between;
+    column-gap:2rem;
+    font-size:2rem;
+    border-radius:5px;
+    background: #fff;
+    padding:1rem 2rem;
+    margin:1rem auto;
+    width: 70%;
+    box-shadow:3px 3px 5px 5px #999;
+}
+
+@media screen and (max-width:540px){
+    .index-budget{
+        font-size:1rem;
+    }
+}
+
+.budget{
+    color:var(--font);
+}
+
+.delete{
+    padding:5px 10px;
+    background: var(--danger);
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    display:inline-block;
+    width:100%;
+    margin:0 auto;
+    vertical-align: middle;
+    cursor:pointer;
+}
+
+.delete:hover{
+    filter:brightness(120%);
+}
+
+/* show */
+.expense-form{
+    border-radius:10px;
+    background: #fff;
+    width: 80%;
+    padding:1rem 2rem;
+    margin: 2rem auto;
+}
+
+.remaining{
+    text-align: center;
+    font-size:2rem;
+}
+
+/* expense */
+table{
+    width: 80%;
+    margin:2rem auto;
+    border-collapse: collapse;
+}
+
+th,td{
+    border:1px solid var(--main-color);
+}
+
+th{
+    border-bottom:3px solid var(--main-color);
+    background: var(--submit);
+    color:#fff;
+}
+
+td{
+    background: #fff;
+}
+
+@media screen and (max-width:540px){
+    table{
+        width: 95%;
+        font-size:.7rem;
+    }
+}
+
+/* month */
+.month{
+    font-size:2rem;
+    width: fit-content;
+    padding:5px 1rem;
+    background: #fff;
+    border-radius: 5px;
+    color:var(--font);
+    text-align: center;
+    display:block;
+    margin:2rem auto;
+}
+
