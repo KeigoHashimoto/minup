@@ -369,4 +369,15 @@ td{
     cursor:pointer;
 }
 
+@media screen and (max-width:540px){
+    #task-icon{
+        bottom: 3rem;
+        right: 3rem;
+        padding: .5rem;
+        background: #fff;
+        border-radius:5px;
+    
+    }
+}
+
 
