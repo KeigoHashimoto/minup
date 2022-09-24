@@ -58,7 +58,7 @@ class BudgetsController extends Controller
     public function show($id){
         $budget=Budget::findOrFail($id);
 
-        $expenses=Expense::where('budget_id',$budget->id)->orderBy('created_at','desc')->get();
+        $expenses=Expense::where('budget_id',$budget->id)->where('user_id',\Auth::id())->orderBy('created_at','desc')->get();
 
         $sum = $expenses->sum('expense');
 
@@ -68,6 +68,28 @@ class BudgetsController extends Controller
     public function destroy($id){
         $budget=Budget::findOrFail($id);
         $budget->delete();
+
+        return redirect('/');
+    }
+
+    public function edit($id){
+        $budget = Budget::findOrfail($id);
+
+        return view('budgets.edit',compact('budget'));
+    }
+
+    public function update(Request $request ,$id){
+        $request->validate([
+            'title'=> 'required|string|max:255',
+            'budget'=> 'required|integer',
+        ]);
+
+        $budget=Budget::findOrFail($id);
+
+        $budget->title = $request->title;
+        $budget->budget = $request -> budget;
+        $budget->month = date('Y/m/d');
+        $budget->save();
 
         return redirect('/');
     }

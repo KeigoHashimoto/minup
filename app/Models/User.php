@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Budget;
 use App\Models\Expense;
+use App\Models\Task;
 
 class User extends Authenticatable
 {
@@ -50,6 +51,10 @@ class User extends Authenticatable
 
     public function expenses(){
         return $this->hasMany(Expense::class);
+    }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
     }
 }
 

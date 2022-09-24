@@ -14,8 +14,11 @@
     @include('commons.header')
 
     <div class="container">
+        @include('commons.error')
+
         @yield('content')
     </div>
     
+    <script src={{ asset('js/main.js') }}></script>
 </body>
 </html>

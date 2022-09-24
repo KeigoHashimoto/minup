@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BudgetsController;
 use App\Models\Budget;
 use App\Models\User;
 use App\Models\Expense;
@@ -36,5 +37,26 @@ class ExpensesController extends Controller
         $expense->delete();
 
         return back();
+    }
+
+    public function edit($id){
+        $expense = Expense::findOrFail($id);
+        return view('expenses.edit',compact('expense'));
+    }
+
+    public function update(Request $request ,$id){
+        $request->validate([
+            'content' => 'required|string|max:255',
+            'expense' => 'required|integer',
+        ]);
+
+        $user=\Auth::user();
+
+        $expense = Expense::findOrFail($id);
+        $expense->content = $request->content;
+        $expense->expense = $request->expense;
+        $expense->save();
+
+        return redirect()->action([BudgetsController::class,'index']);
     }
 }

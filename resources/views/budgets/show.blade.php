@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 class="center-title">{{ '【'.$budget->title.'】' }}の予算：{{ $budget->budget }}円</h1>
+<h1 class="center-title">{{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円</h1>
 
 {{ Form::open(['route'=>['expenses.post',$budget->id],'class'=>'expense-form']) }}
     <div class="form-group">

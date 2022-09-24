@@ -6,10 +6,27 @@ body{
     font-family: 'M PLUS 1p', sans-serif;
     letter-spacing:1.5px;
 }
+
+.errors{
+    max-width:800px;
+    background: var(--danger);
+    color:#fff;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+}
+
 .container{
     max-width:1000px;
     margin:0 auto;
     padding:1.5rem 0;
+}
+
+.textarea{
+    width: 90%;
+    border-radius:5px;
+    margin:0 auto;
+    display: block;
 }
 
 p{
@@ -103,6 +120,8 @@ a:hover{
     display: block;
     height:1.5rem;
     text-align: center;
+    cursor:pointer;
+    border:none;
 }
 
 .small{
@@ -114,6 +133,15 @@ a:hover{
 
 .center-title{
     text-align: center;
+    width: 90%;
+    margin:0 auto ;
+    word-break:break-word;
+}
+
+@media screen and (max-width:540px){
+    .center-title{
+        font-size:1.8rem;
+    }
 }
 
 /* header */
@@ -157,24 +185,32 @@ header{
     width: fit-content;
     color:#fff;
 }
+
+@media screen and (max-width:540px){
+    .menu-item{
+        font-size:.6rem;
+    }
+}
 /* home */
 .index-budget{
     display:flex;
     justify-content: space-between;
     column-gap:2rem;
-    font-size:2rem;
+    font-size:1.6rem;
     border-radius:5px;
     background: #fff;
     padding:1rem 2rem;
     margin:1rem auto;
     width: 70%;
     box-shadow:3px 3px 5px 5px #999;
+
 }
 
-@media screen and (max-width:540px){
-    .index-budget{
-        font-size:1rem;
-    }
+.budget-title{
+    width:70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .budget{
@@ -182,20 +218,56 @@ header{
 }
 
 .delete{
-    padding:5px 10px;
+    padding:6px 10px;
     background: var(--danger);
     color:#fff;
     border:none;
     border-radius:5px;
-    display:inline-block;
-    width:100%;
+    display:block;
+    width:fit-content;
     margin:0 auto;
-    vertical-align: middle;
     cursor:pointer;
+    white-space:nowrap;
+    
 }
 
 .delete:hover{
     filter:brightness(120%);
+}
+
+.edit{
+    padding:4px 10px;
+    background: rgb(206, 206, 0);
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    display:block;
+    width:fit-content;
+    margin:0 auto;
+    cursor:pointer;
+    font-size:1rem;
+    white-space: nowrap;
+}
+
+.edit:hover{
+    filter:brightness(120%);
+    color:#fff;
+}
+
+.budget-buttons{
+    display: flex;
+    column-gap:1rem;
+}
+
+@media screen and (max-width:540px){
+    .edit,.delete{
+        font-size:.6rem;
+        white-space:nowrap;
+    }
+
+    .index-budget{
+        font-size:.8rem;
+    }
 }
 
 /* show */
@@ -252,4 +324,22 @@ td{
     display:block;
     margin:2rem auto;
 }
+
+.tasks{
+    max-width:800px;
+    margin: 0 auto;
+}
+
+.tasks-index{
+    width: 80%;
+    margin: 0 auto;
+    word-break:break-word;
+    font-size:1.2rem;
+    display: flex;
+    column-gap: 1rem;
+    border-bottom:2px solid #999;
+    padding:1rem 2rem
+}
+
+
 
