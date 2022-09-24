@@ -158,6 +158,14 @@ header{
     color:#fff;
 }
 
+#nav-icon{
+    margin-left: auto;
+    margin-right: 10%;
+    display:none;
+    width: fit-content;
+    font-size:2rem;
+}
+
 .greet{
     text-align: right;
     margin-right:2rem;
@@ -175,6 +183,7 @@ header{
 .header-logo{
     display:block;
     max-width: 200px;
+    width: fit-content;
     height: auto;
     margin:0 auto;
     padding: 1rem 0;
@@ -200,6 +209,37 @@ header{
     }
 
     .greet{
+        font-size:.6rem;
+    }
+
+    #nav-icon{
+        display: block;
+    }
+
+    #nav-menu{
+        display:block;
+        width: fit-content;
+        height: 100%;
+        position:fixed;
+        background: #333;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding-top: 5rem;
+        line-height:2
+    }
+
+    .slideOut{
+        transform:translateX(-100%);
+        transition:all 1.5s ease;
+    }
+
+    .slideIn{
+        transform:translateX(0%);
+        transition:all 1.5s ease;
+    }
+
+    .alert{
         font-size:.6rem;
     }
 }
@@ -346,8 +386,13 @@ td{
     padding:1rem 2rem
 }
 
+.task{
+    display: flex;
+    align-items: center;
+}
+
 .check{
-    font-size:2rem;
+    font-size:1.5rem;
     color:#333;
     border:none;
     padding:.5rem;
@@ -367,6 +412,10 @@ td{
     right: 5rem;
     color: rgb(19, 128, 19);
     cursor:pointer;
+}
+
+.check:hover{
+    color:rgb(45, 45, 255);
 }
 
 @media screen and (max-width:540px){

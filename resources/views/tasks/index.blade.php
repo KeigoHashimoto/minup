@@ -14,16 +14,20 @@
         {{ Form::close() }}
     </div>
 
-    @foreach($tasks as $task)
-        
-        <div class="tasks-index">
-            {{ Form::open(['route'=>['task.delete',$task->id],'method'=>'delete']) }}
-                {{ Form::button('<i class="fas fa-check"></i>',['class'=>'check','type'=>'submit']) }}
-            {{ Form::close() }}
+    @if($tasks->isEmpty())
+        <p class="center-title alert">タスクがありません。右下のアイコンからタスクを追加してください。</p>
+    @else
+        @foreach($tasks as $task)
+            
+            <div class="tasks-index">
+                {{ Form::open(['route'=>['task.delete',$task->id],'method'=>'delete']) }}
+                    {{ Form::button('<i class="fas fa-check"></i>',['class'=>'check','type'=>'submit']) }}
+                {{ Form::close() }}
 
-            <p class="task">{{ $task->task }}</p>
-        </div>
-    @endforeach
+                <p class="task">{{ $task->task }}</p>
+            </div>
+        @endforeach
+    @endif
 
 </div>
 

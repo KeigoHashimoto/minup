@@ -18,3 +18,20 @@ function dropdown(btn,content){
 }
 
 dropdown(taskBtn,task);
+
+const menuBtn = document.getElementById('nav-icon');
+const menu = document.getElementById('nav-menu');
+
+function slideInOut(btn,content){
+    $(btn).on('click',() => {
+        if($(content).hasClass('slideOut')){
+            $(content).removeClass('slideOut');
+            $(content).addClass('slideIn');
+        }else{
+            $(content).removeClass('slideIn');
+            $(content).addClass('slideOut');
+        }
+    })
+}
+
+slideInOut(menuBtn,menu);
