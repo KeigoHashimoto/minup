@@ -25,6 +25,7 @@
             <th>出費</th>
             <th>日時</th>
             <th>削除</th>
+            <th>編集</th>
         </tr>
     </thead>
 
@@ -32,12 +33,13 @@
         @foreach($expenses as $expense)
             <tr>
                 <td>{{ $expense->content }}</td>
-                <td>¥{{ $expense->expense }}</td>
+                <td>{{ $expense->expense }}</td>
                 <td>{{ $expense->created_at }}</td>
                 <td>{{ Form::open(['route'=>['expense.delete',$expense->id],'method'=>'delete']) }}
-                        {{ Form::submit('削除',['class'=>'delete']) }}
+                        {{ Form::submit('削除',['class'=>'delete','onClick' => 'return deleteBtn();']) }}
                     {{ Form::close() }}
                 </td>
+                <td>{!! link_to_route('expense.edit','編集',$expense->id,['class'=>'edit']) !!}</td>
             </tr>
         @endforeach     
     </tbody>
