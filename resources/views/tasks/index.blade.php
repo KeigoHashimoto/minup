@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="tasks">
-    <div class="tasks-form">
+    <div id="task-icon">
+        <i class="fas fa-tasks"></i>
+    </div>
+
+    <div id="tasks-form">
         {{ Form::open(['route'=>'task.post']) }}
             {{ Form::textarea('task',null,['class'=>'textarea']) }}
             {{ Form::submit('タスクの作成',['class'=>'submit form-control']) }}
@@ -14,7 +18,7 @@
         
         <div class="tasks-index">
             {{ Form::open(['route'=>['task.delete',$task->id],'method'=>'delete']) }}
-                {{ Form::button('完了',['class'=>'delete','type'=>'submit']) }}
+                {{ Form::button('<i class="fas fa-check"></i>',['class'=>'check','type'=>'submit']) }}
             {{ Form::close() }}
 
             <p class="task">{{ $task->task }}</p>

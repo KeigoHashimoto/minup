@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>minUP</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
@@ -19,6 +20,7 @@
         @yield('content')
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src={{ asset('js/main.js') }}></script>
 </body>
 </html>

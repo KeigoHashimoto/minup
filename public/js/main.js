@@ -7,3 +7,14 @@ function deleteBtn(){
         return false;
     }
 }
+
+const taskBtn = document.getElementById('task-icon');
+const task = document.getElementById('tasks-form');
+
+function dropdown(btn,content){
+    $(btn).on('click',() => {
+        $(content).toggle();
+    })
+}
+
+dropdown(taskBtn,task);
