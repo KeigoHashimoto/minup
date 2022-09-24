@@ -27,7 +27,7 @@ body{
 }
 
 .textarea{
-    width: 90%;
+    width: 100%;
     border-radius:5px;
     margin:0 auto;
     display: block;
@@ -109,7 +109,7 @@ a:hover{
     display: flex;
     flex-direction:column;
     justify-content: space-around;
-    width: 80%;
+    width: 100%;
     margin:1rem auto;
 }
 
@@ -403,6 +403,9 @@ td{
 
 #tasks-form{
     display:none;
+    max-width:800px;
+    width: 80%;
+    margin:0 auto;
 }
 
 #task-icon{
