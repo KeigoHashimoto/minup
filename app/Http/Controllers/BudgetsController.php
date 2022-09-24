@@ -41,7 +41,7 @@ class BudgetsController extends Controller
     public function store(Request $request){
         $request->validate([
             'title'=> 'required|string|max:255',
-            'budget'=> 'required|integer',
+            'budget'=> 'required|integer|min:1|max:500000',
         ]);
 
         $budget=new Budget;
@@ -81,7 +81,7 @@ class BudgetsController extends Controller
     public function update(Request $request ,$id){
         $request->validate([
             'title'=> 'required|string|max:255',
-            'budget'=> 'required|integer',
+            'budget'=> 'required|integer|min:1|max:500000',
         ]);
 
         $budget=Budget::findOrFail($id);

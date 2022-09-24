@@ -15,7 +15,7 @@ class ExpensesController extends Controller
     public function store(Request $request,$budget){
         $request->validate([
             'content' => 'required|string|max:255',
-            'expense' => 'required|integer',
+            'expense' => 'required|integer|min:1|max:3000000',
         ]);
 
         $user=\Auth::user();
@@ -47,7 +47,7 @@ class ExpensesController extends Controller
     public function update(Request $request ,$id){
         $request->validate([
             'content' => 'required|string|max:255',
-            'expense' => 'required|integer',
+            'expense' => 'required|integer|min:1|max:3000000',
         ]);
 
         $user=\Auth::user();
