@@ -12,7 +12,9 @@
             {{ Form::number('budget',null,['class'=>'form-control','placeholder'=>'(例)30000円の場合→30000']) }}
         </div>
 
-        {{ Form::submit('予算を作成',['class'=>'form-control submit']) }}
+        <div class="form-group">
+            {{ Form::submit('予算を作成',['class'=>'form-control submit']) }}
+        </div>
 
         <p>{!! link_to_route('budget.index','ホームへ',[],['class'=>'small']) !!}</p>
     {{ Form::close() }}

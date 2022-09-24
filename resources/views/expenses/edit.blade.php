@@ -13,7 +13,9 @@
         {!! Form::text('expense',null,['class'=>'form-control']) !!}
     </div>
 
-    {!! Form::submit('編集',['class'=>'form-control submit']) !!}
+    <div class="form-group">
+        {!! Form::submit('編集',['class'=>'form-control submit']) !!}
+    </div>
 {{ Form::close() }}
 
 @endsection
