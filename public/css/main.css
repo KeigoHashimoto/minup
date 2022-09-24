@@ -123,7 +123,7 @@ a:hover{
 .submit{
     background: var(--submit);
     color:#fff;
-    width: 80%;
+    width: 100%;
     margin: 2rem auto;
     display: block;
     height:1.5rem;
