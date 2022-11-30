@@ -11,6 +11,7 @@
             {{ Form::label('budget','予算') }}
             {{ Form::number('budget',null,['class'=>'form-control','placeholder'=>'(例)30000円の場合→30000']) }}
         </div>
+        
         <div class="form-group">
             {{ Form::label('month','日付') }}
             {{ Form::date('month',null,['class'=>'form-control','placeholder'=>'(例)何月の予算かを入力してください']) }}
