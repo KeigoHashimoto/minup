@@ -41,7 +41,7 @@ class BudgetsController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'title'=> 'required|string|max:255',
+            'title'=> 'required|string|max:260',
             'budget'=> 'required|integer|min:1|max:500000',
         ]);
 
