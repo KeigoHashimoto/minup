@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-group">
-            {{ Form::submit('予算を作成',null,['class'=>'form-control submit']) }}
+            {{ Form::submit('予算を作成',['class'=>'form-control submit']) }}
         </div>
 
         <p>{!! link_to_route('budget.index','ホームへ',[],['class'=>'small']) !!}</p>
