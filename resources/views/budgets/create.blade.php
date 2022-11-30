@@ -11,6 +11,10 @@
             {{ Form::label('budget','予算') }}
             {{ Form::number('budget',null,['class'=>'form-control','placeholder'=>'(例)30000円の場合→30000']) }}
         </div>
+        <div class="form-group">
+            {{ Form::label('month','予算月') }}
+            {{ Form::date('month',$date,['class'=>'form-control','placeholder'=>'(例)2022年12月の場合2022年12月1日']) }}
+        </div>
 
         <div class="form-group">
             {{ Form::submit('予算を作成',['class'=>'form-control submit']) }}

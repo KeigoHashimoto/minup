@@ -35,7 +35,8 @@ class BudgetsController extends Controller
     }
 
     public function create(){
-        return view('budgets.create');
+        $date = date('Y-m-d');
+        return view('budgets.create',compact('date'));
     }
 
     public function store(Request $request){
@@ -49,7 +50,7 @@ class BudgetsController extends Controller
         $budget->user_id = \Auth::id();
         $budget->title = $request->title;
         $budget->budget = $request -> budget;
-        $budget->month = date('Y/m/d');
+        $budget->month = $request -> month;
         $budget->save();
 
         return redirect('/');
