@@ -122,10 +122,12 @@ class BudgetsController extends Controller
         //該当予算に対する出費を取得
         $expenses = $budget->expenses()->get();
 
-        $date=date('Ymd');
+        $date=date('YmdHis');
+
+        $file_path = "reports/{$budget->title}{$date}.csv";
 
         //ファイルを新規作成モードで開く
-        $fp = fopen("reports/{$budget->title}{$date}.csv","c");
+        $fp = fopen($file_path,"w");
         //csvファイルにshiftt-JIS形式で保存
         $budgetString = [];
         $budgetString[] = mb_convert_encoding("予算名：  {$budget->title}", "sjis");
@@ -135,7 +137,7 @@ class BudgetsController extends Controller
         fclose($fp);
 
         //ファイルを追記モードで開く
-        $fp2 = fopen("reports/{$budget->title}{$date}.csv","a");
+        $fp2 = fopen($file_path,"a");
         //出費をforeachで一個ずつ取り出す
         foreach($expenses as $content){
             $string = [];
@@ -146,6 +148,17 @@ class BudgetsController extends Controller
         }
         //csvに追記保存
         fclose($fp2);
+
+        header('Content-Type: application/octet-stream');
+        // ファイルのコンテンツタイプを指定
+        header('Content-Disposition:attachment;filename = "test');
+        // ファイルのダウンロードバーを表示; ダウンロード後のファイル名を設定
+        header('Content-Length: '.filesize( $file_path ));
+        // ファイルの大きさを明示
+        echo file_get_contents($file_path);
+        // ファイルを出力
+        exit;
+        // 処理を終了
 
         return redirect()->back();
     }
