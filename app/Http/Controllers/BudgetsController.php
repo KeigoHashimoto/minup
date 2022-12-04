@@ -115,4 +115,38 @@ class BudgetsController extends Controller
         
         return view('budgets.monthShow',compact('budgets'));
     }
+
+    public function report($id){
+        //該当の予算を取得
+        $budget = Budget::findOrfail($id);
+        //該当予算に対する出費を取得
+        $expenses = $budget->expenses()->get();
+
+        $date=date('Ymd');
+
+        //ファイルを新規作成モードで開く
+        $fp = fopen("reports/{$budget->title}{$date}.csv","c");
+        //csvファイルにshiftt-JIS形式で保存
+        $budgetString = [];
+        $budgetString[] = mb_convert_encoding("予算名：  {$budget->title}", "sjis");
+        $budgetString[] = mb_convert_encoding("  予算額： {$budget->budget}", "sjis");
+        fputcsv($fp,$budgetString);
+        //ファイルを閉じる
+        fclose($fp);
+
+        //ファイルを追記モードで開く
+        $fp2 = fopen("reports/{$budget->title}{$date}.csv","a");
+        //出費をforeachで一個ずつ取り出す
+        foreach($expenses as $content){
+            $string = [];
+            $string[] = mb_convert_encoding("内容：" . $content->content ,"sjis");
+            $string[] = mb_convert_encoding("  出費：" . $content->expense ,"sjis");
+            $string[] = mb_convert_encoding("  日時：" . $content->created_at ,"sjis");
+            fputcsv($fp2,$string);
+        }
+        //csvに追記保存
+        fclose($fp2);
+
+        return redirect()->back();
+    }
 }

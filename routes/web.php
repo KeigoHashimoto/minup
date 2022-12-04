@@ -43,6 +43,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::put('budget/{id}/update',[App\Http\Controllers\BudgetsController::class,'update'])->name('budget.update');
     Route::get('budget/month',[App\Http\Controllers\BudgetsController::class,'month'])->name('budget.month');
     Route::get('budget/month/{newMonth}/show',[App\Http\Controllers\BudgetsController::class,'monthShow'])->name('budget.monthShow');
+    Route::get('{id}/report',[App\Http\Controllers\BudgetsController::class,'report'])->name('budget.report');
 
     Route::post('expense/{budget}/store',[App\Http\Controllers\ExpensesController::class,'store'])->name('expenses.post');
     Route::delete('expense/{id}/delete',[App\Http\Controllers\ExpensesController::class,'destroy'])->name('expense.delete');
