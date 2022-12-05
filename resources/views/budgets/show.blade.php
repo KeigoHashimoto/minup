@@ -57,9 +57,11 @@
     @endif
 </h3>    
 
-{{ Form::open(['route'=>['budget.report',$budget->id],'method'=>'get']) }}
-    {{ Form::submit('帳票出力') }}
-{{ Form::close() }}
+<div class="report">
+    {{ Form::open(['route'=>['budget.report',$budget->id],'method'=>'get']) }}
+        {{ Form::submit('帳票出力',['class'=>'report-btn']) }}
+    {{ Form::close() }}
+</div>
 
 {!! link_to_route('budget.index','予算一覧に戻る',[],['class'=>'small']) !!}
 

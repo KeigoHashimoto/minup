@@ -151,15 +151,17 @@ class BudgetsController extends Controller
 
         header('Content-Type: application/octet-stream');
         // ファイルのコンテンツタイプを指定
-        header('Content-Disposition:attachment;filename = "test');
+        header('Content-Disposition:attachment;filename = "budget.csv');
         // ファイルのダウンロードバーを表示; ダウンロード後のファイル名を設定
         header('Content-Length: '.filesize( $file_path ));
         // ファイルの大きさを明示
         echo file_get_contents($file_path);
         // ファイルを出力
+
+        unlink($file_path);
+
         exit;
         // 処理を終了
 
-        return redirect()->back();
     }
 }

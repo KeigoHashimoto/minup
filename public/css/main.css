@@ -87,7 +87,7 @@ a:hover{
     padding:7rem 3rem;
     background: #fff;
     border-radius:10px;
-    margin:1rem auto 1rem;
+    margin:3rem auto;
 }
 @media screen and (max-width:540px){
     .form{
@@ -324,9 +324,31 @@ header{
     margin: 2rem auto;
 }
 
+/*残額*/
 .remaining{
     text-align: center;
     font-size:2rem;
+}
+
+.report-btn{
+    display: block;
+    max-width:20rem;
+    width: 18rem;
+    height: 2rem;
+    margin: 1rem auto;
+    background: var(--main-color);
+    color:#fff;
+    font-weight:bold;
+    letter-spacing:2px;
+    border:none;
+    border-radius:5px;
+    box-shadow:2px 2px 0 var(--font);
+    cursor:pointer;
+}
+
+.report-btn:hover{
+    box-shadow:.5px .5px 0 var(--font);
+    transition:box-shadow .25s ease;
 }
 
 /* expense */
