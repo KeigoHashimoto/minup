@@ -7,7 +7,7 @@
         <p class="center-title alert">まだ一度も予算が登録されていません</p>
     @else
         @foreach($budgets_month as $budget_month)
-            {!! link_to_route('budget.monthShow',$budget_month->month.'月分',[$budget_month->month],['class'=>'month']) !!}
+            {!! link_to_route('budget.monthShow',$budget_month->month,[$budget_month->month],['class'=>'month']) !!}
         @endforeach
     @endif
 @endsection
