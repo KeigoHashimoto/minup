@@ -13,22 +13,7 @@ class BudgetsController extends Controller
 {
     public function index(){
         
-        $new = \DB::table('budgets')
-            ->select(['month'])
-            ->orderBy('month','desc')
-            ->first();
-
-        $budgets=array();
-
-        if(isset($new)){
-            $budgets=Budget::where('user_id',\Auth::id())
-            ->where('month','=',$new->month)
-            ->orderBy('created_at','desc')
-            ->get();
-        }else{
-            $budgets=[];
-        }
-        
+        $budgets = Budget::where('user_id',\Auth::user()->id)->orderBy('created_at','desc')->limit(5)->get();
 
         return view('home',compact('budgets')); 
     }
@@ -43,6 +28,7 @@ class BudgetsController extends Controller
             'title'=> 'required|string|max:260',
             'budget'=> 'required|integer|min:1|max:500000',
             'month' => 'required|integer|min:1|max:12',
+            'year' => 'required|integer|min:1980|',
         ]);
 
         $budget=new Budget;
@@ -50,6 +36,7 @@ class BudgetsController extends Controller
         $budget->user_id = \Auth::id();
         $budget->title = $request->title;
         $budget->budget = $request -> budget;
+        $budget->year = $request->year;
         $budget->month = $request -> month;
         $budget->save();
 
@@ -82,7 +69,8 @@ class BudgetsController extends Controller
     public function update(Request $request ,$id){
         $request->validate([
             'title'=> 'required|string|max:255',
-            'budget'=> 'required|integer|min:1|max:500000',
+            'budget'=> 'required|integer|min:1|max:1000000',
+            'year' => 'required|integer|min:1980',
             'month' => 'required|integer|min:1|max:12',
         ]);
 
@@ -90,6 +78,7 @@ class BudgetsController extends Controller
 
         $budget->title = $request->title;
         $budget->budget = $request -> budget;
+        $budget->year = $request->year;
         $budget->month = $request->month;
         $budget->save();
 
@@ -99,20 +88,20 @@ class BudgetsController extends Controller
     public function month(){
         $subQuery=function($query){
             $query->from('budgets')
-                ->select(['month'])
-                ->where('user_id','=',\Auth::id())
-                ->groupBy('month');
+                ->select(['month','year'])
+                ->where('user_id','=',\Auth::id());
         };
 
         $budgets_month=\DB::table($subQuery)
-            ->orderBy('month','desc')
+            ->orderBy('year','desc')
+            ->orderBy('month')
             ->get();
 
         return view('budgets.month',compact('budgets_month'));
     }
 
-    public function monthShow($newMonth){
-        $budgets=Budget::where('month','like',$newMonth.'%')->where('user_id',\Auth::id())->orderBy('created_at','desc')->get();
+    public function monthShow($year,$month){
+        $budgets=Budget::where('year','=',$year)->where('month','=',$month)->where('user_id',\Auth::id())->orderBy('created_at','desc')->get();
         
         return view('budgets.monthShow',compact('budgets'));
     }
@@ -131,8 +120,8 @@ class BudgetsController extends Controller
         $fp = fopen($file_path,"w");
         //csvファイルにshiftt-JIS形式で保存
         $budgetString = [];
-        $budgetString[] = mb_convert_encoding("予算名：  {$budget->title}", "sjis");
-        $budgetString[] = mb_convert_encoding("  予算額： {$budget->budget}", "sjis");
+        $budgetString[] = mb_convert_encoding($budget->title, "sjis");
+        $budgetString[] = mb_convert_encoding($budget->budget, "sjis");
         fputcsv($fp,$budgetString);
         //ファイルを閉じる
         fclose($fp);
@@ -142,9 +131,9 @@ class BudgetsController extends Controller
         //出費をforeachで一個ずつ取り出す
         foreach($expenses as $content){
             $string = [];
-            $string[] = mb_convert_encoding("内容：" . $content->content ,"sjis");
-            $string[] = mb_convert_encoding("  出費：" . $content->expense ,"sjis");
-            $string[] = mb_convert_encoding("  日時：" . $content->created_at ,"sjis");
+            $string[] = mb_convert_encoding($content->content ,"sjis");
+            $string[] = mb_convert_encoding($content->expense ,"sjis");
+            $string[] = mb_convert_encoding($content->created_at ,"sjis");
             fputcsv($fp2,$string);
         }
         //csvに追記保存

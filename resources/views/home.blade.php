@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('commons.budgets')
 
+    @if(!$budgets->isEmpty()) 
+        @include('commons.budgets')
+    @else
+        <p>予算を作成してください</p>
+    @endif
 
 @endsection

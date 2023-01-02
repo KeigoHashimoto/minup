@@ -5,7 +5,7 @@
 <div class="budget-show-title">
     <h1 class="center-title">
         {{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円
-        <span>{!! link_to_route('budget.edit','EDIT',[$budget->id],['class'=>'budget-edit-btn']) !!}</span>
+        <span>{!! link_to_route('budget.edit','編集',[$budget->id],['class'=>'budget-edit-btn']) !!}</span>
     </h1>
 </div>
 

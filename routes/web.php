@@ -42,7 +42,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('budget/{id}/edit',[App\Http\Controllers\BudgetsController::class,'edit'])->name('budget.edit');
     Route::put('budget/{id}/update',[App\Http\Controllers\BudgetsController::class,'update'])->name('budget.update');
     Route::get('budget/month',[App\Http\Controllers\BudgetsController::class,'month'])->name('budget.month');
-    Route::get('budget/month/{newMonth}/show',[App\Http\Controllers\BudgetsController::class,'monthShow'])->name('budget.monthShow');
+    Route::get('budget/month/{year}/{month}/show',[App\Http\Controllers\BudgetsController::class,'monthShow'])->name('budget.monthShow');
     Route::get('{id}/report',[App\Http\Controllers\BudgetsController::class,'report'])->name('budget.report');
 
     Route::post('expense/{budget}/store',[App\Http\Controllers\ExpensesController::class,'store'])->name('expenses.post');
