@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->integer('budget');
-            $table->date('month');
+            $table->integer('month');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

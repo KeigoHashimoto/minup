@@ -120,6 +120,11 @@ a:hover{
     height:1.3rem
 }
 
+.month-form{
+    width: 3rem;
+    margin-right: .5rem;
+}
+
 .submit{
     background: var(--submit);
     color:#fff;
@@ -322,6 +327,20 @@ header{
     width: 80%;
     padding:1rem 2rem;
     margin: 2rem auto;
+}
+
+
+.budget-show-title > .center-title > span{
+    padding:.3rem .2rem;
+    background: yellow;
+    border-radius:5px;
+    font-size:.7rem;
+}
+
+.expense-table{
+    width: 95%;
+    overflow:auto;
+    margin:0 auto;
 }
 
 /*残額*/

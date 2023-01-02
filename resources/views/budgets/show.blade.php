@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="center-title">{{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円</h1>
+
+<div class="budget-show-title">
+    <h1 class="center-title">
+        {{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円
+        <span>{!! link_to_route('budget.edit','EDIT',[$budget->id],['class'=>'budget-edit-btn']) !!}</span>
+    </h1>
+</div>
+
 
 
 {{ Form::open(['route'=>['expenses.post',$budget->id],'class'=>'expense-form']) }}
@@ -18,32 +25,34 @@
     {!! Form::submit('登録',['class'=>'form-control submit']) !!}
 {{ Form::close() }}
 
-<table>
-    <thead>
-        <tr>
-            <th>用途</th>
-            <th>出費</th>
-            <th>日時</th>
-            <th>削除</th>
-            <th>編集</th>
-        </tr>
-    </thead>
-
-    <tbody>       
-        @foreach($expenses as $expense)
+<div class="expense-table">
+    <table>
+        <thead>
             <tr>
-                <td>{{ $expense->content }}</td>
-                <td>{{ $expense->expense }}</td>
-                <td>{{ $expense->created_at }}</td>
-                <td>{{ Form::open(['route'=>['expense.delete',$expense->id],'method'=>'delete']) }}
-                        {{ Form::submit('削除',['class'=>'delete','onClick' => 'return deleteBtn();']) }}
-                    {{ Form::close() }}
-                </td>
-                <td>{!! link_to_route('expense.edit','編集',$expense->id,['class'=>'edit']) !!}</td>
+                <th>用途</th>
+                <th>出費</th>
+                <th>日時</th>
+                <th>削除</th>
+                <th>編集</th>
             </tr>
-        @endforeach     
-    </tbody>
-</table>
+        </thead>
+    
+        <tbody>       
+            @foreach($expenses as $expense)
+                <tr>
+                    <td>{{ $expense->content }}</td>
+                    <td>{{ $expense->expense }}</td>
+                    <td>{{ $expense->created_at }}</td>
+                    <td>{{ Form::open(['route'=>['expense.delete',$expense->id],'method'=>'delete']) }}
+                            {{ Form::submit('削除',['class'=>'delete','onClick' => 'return deleteBtn();']) }}
+                        {{ Form::close() }}
+                    </td>
+                    <td>{!! link_to_route('expense.edit','編集',$expense->id,['class'=>'edit']) !!}</td>
+                </tr>
+            @endforeach     
+        </tbody>
+    </table>
+</div>
 
 <p class="center-title">現在使用金額：{{ $sum }}円</p>
 

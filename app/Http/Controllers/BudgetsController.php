@@ -15,15 +15,14 @@ class BudgetsController extends Controller
         
         $new = \DB::table('budgets')
             ->select(['month'])
-            ->selectRaw('date_format(month,"%Y-%m") as new_month')
-            ->orderBy('new_month','desc')
+            ->orderBy('month','desc')
             ->first();
 
         $budgets=array();
 
         if(isset($new)){
             $budgets=Budget::where('user_id',\Auth::id())
-            ->where('month','like',$new->new_month.'%')
+            ->where('month','=',$new->month)
             ->orderBy('created_at','desc')
             ->get();
         }else{
@@ -43,6 +42,7 @@ class BudgetsController extends Controller
         $request->validate([
             'title'=> 'required|string|max:260',
             'budget'=> 'required|integer|min:1|max:500000',
+            'month' => 'required|integer|min:1|max:12',
         ]);
 
         $budget=new Budget;
@@ -83,13 +83,14 @@ class BudgetsController extends Controller
         $request->validate([
             'title'=> 'required|string|max:255',
             'budget'=> 'required|integer|min:1|max:500000',
+            'month' => 'required|integer|min:1|max:12',
         ]);
 
         $budget=Budget::findOrFail($id);
 
         $budget->title = $request->title;
         $budget->budget = $request -> budget;
-        $budget->month = date('Y/m/d');
+        $budget->month = $request->month;
         $budget->save();
 
         return redirect('/');
@@ -98,13 +99,13 @@ class BudgetsController extends Controller
     public function month(){
         $subQuery=function($query){
             $query->from('budgets')
-                ->selectRaw('date_format(month,"%Y-%m") as new_month')
-                ->where('user_id',\Auth::id())
-                ->groupBy('new_month');
+                ->select(['month'])
+                ->where('user_id','=',\Auth::id())
+                ->groupBy('month');
         };
 
         $budgets_month=\DB::table($subQuery)
-            ->orderBy('new_month','desc')
+            ->orderBy('month','desc')
             ->get();
 
         return view('budgets.month',compact('budgets_month'));

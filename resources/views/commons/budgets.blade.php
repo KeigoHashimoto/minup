@@ -5,7 +5,7 @@
         @foreach($budgets as $budget)
             <div class="index-budget">
                 <div class="budget-title">
-                    {!! link_to_route('budget.show',substr($budget->month,0,-3).'：'.'【'.$budget->title.'】',[$budget->id],['class'=>'budget']) !!}
+                    {!! link_to_route('budget.show',$budget->month.'月'.'：'.'【'.$budget->title.'】',[$budget->id],['class'=>'budget']) !!}
                 </div>
                 <div class="budget-btns">
                     {!! link_to_route('budget.edit','編集',[$budget->id],['class'=>'small edit']) !!}

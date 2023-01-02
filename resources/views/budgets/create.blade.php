@@ -13,8 +13,10 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('month','日付') }}
-            {{ Form::date('month',null,['class'=>'form-control','placeholder'=>'(例)何月の予算かを入力してください']) }}
+            {{ Form::label('month','予算月') }}
+            <p>
+                {{ Form::number('month',null,['class'=>'month-form']) }}月分
+            </p>
         </div>
 
         <div class="form-group">
