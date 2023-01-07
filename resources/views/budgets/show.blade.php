@@ -9,8 +9,6 @@
     </h1>
 </div>
 
-
-
 {{ Form::open(['route'=>['expenses.post',$budget->id],'class'=>'expense-form']) }}
     <div class="form-group">
         {!! Form::label('content','用途') !!}
@@ -51,6 +49,26 @@
                         <button class="edit" id="edit-btn"><i class="fas fa-pen"></i></button>
                     </td>
                 </tr>
+
+                {{-- edit用モーダルフォーム --}}
+                <div id="expense-edit">
+                    {{ Form::model($expense,['route'=>['expense.update',$expense->id],'method'=>'put']) }}
+                        <div class="form-group">
+                            {!! Form::label('content','用途') !!}
+                            {!! Form::text('content',null,['class'=>'form-control']) !!}
+                        </div>
+                    
+                        <div class="form-group">
+                            {!! Form::label('expense','出費') !!}
+                            {!! Form::text('expense',null,['class'=>'form-control']) !!}
+                        </div>
+                    
+                        <div class="form-group">
+                            {!! Form::submit('編集',['class'=>'form-control submit']) !!}
+                        </div>
+                    {{ Form::close() }}
+                </div>
+
             @endforeach     
         </tbody>
     </table>
@@ -78,24 +96,6 @@
 
 {!! link_to_route('budget.index','予算一覧に戻る',[],['class'=>'small']) !!}
 
-{{-- edit用モーダルフォーム --}}
-<div id="expense-edit">
-    {{ Form::model($expense,['route'=>['expense.update',$expense->id],'method'=>'put']) }}
-        <div class="form-group">
-            {!! Form::label('content','用途') !!}
-            {!! Form::text('content',null,['class'=>'form-control']) !!}
-        </div>
-    
-        <div class="form-group">
-            {!! Form::label('expense','出費') !!}
-            {!! Form::text('expense',null,['class'=>'form-control']) !!}
-        </div>
-    
-        <div class="form-group">
-            {!! Form::submit('編集',['class'=>'form-control submit']) !!}
-        </div>
-    {{ Form::close() }}
-</div>
 
 <div class="filter"></div>
 
