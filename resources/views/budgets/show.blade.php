@@ -46,29 +46,9 @@
                         {{ Form::close() }}
                     </td>
                     <td>
-                        <button class="edit" id="edit-btn"><i class="fas fa-pen"></i></button>
+                        <a href="{{ route('expense.edit',$expense->id) }}" class="edit"><i class="fas fa-pen"></i></a>
                     </td>
                 </tr>
-
-                {{-- edit用モーダルフォーム --}}
-                <div id="expense-edit">
-                    {{ Form::model($expense,['route'=>['expense.update',$expense->id],'method'=>'put']) }}
-                        <div class="form-group">
-                            {!! Form::label('content','用途') !!}
-                            {!! Form::text('content',null,['class'=>'form-control']) !!}
-                        </div>
-                    
-                        <div class="form-group">
-                            {!! Form::label('expense','出費') !!}
-                            {!! Form::text('expense',null,['class'=>'form-control']) !!}
-                        </div>
-                    
-                        <div class="form-group">
-                            {!! Form::submit('編集',['class'=>'form-control submit']) !!}
-                        </div>
-                    {{ Form::close() }}
-                </div>
-
             @endforeach     
         </tbody>
     </table>
