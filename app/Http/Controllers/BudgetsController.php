@@ -15,7 +15,7 @@ class BudgetsController extends Controller
         /**
          * 現在時刻の年と月が同じ予算をホーム画面に表示させる。
          */
-        $budgets = Budget::where('year',(int)date('Y'))->where('month',(int)date('m'))->orderBy('created_at','desc')->limit(5)->get();
+        $budgets = Budget::where('year',(int)date('Y'))->where('month',(int)date('m'))->where('user_id','=',Auth::user()->id)->orderBy('created_at','desc')->limit(5)->get();
 
         return view('home',compact('budgets')); 
     }
