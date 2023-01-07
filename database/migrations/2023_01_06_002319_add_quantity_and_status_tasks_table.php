@@ -16,6 +16,7 @@ class AddQuantityAndStatusTasksTable extends Migration
         Schema::table('tasks', function (Blueprint $table) {
             $table->integer('quantity')->nullable();
             $table->boolean('status')->default(false);
+            $table->integer('taskBudget')->nullable();
         });
     }
 
@@ -28,6 +29,8 @@ class AddQuantityAndStatusTasksTable extends Migration
     {
         Schema::table('tasks', function (Blueprint $table) {
             $table->dropColumn('quantity');
+            $table->dropColumn('status');
+            $table->dropColumn('taskBudget');
         });
     }
 }

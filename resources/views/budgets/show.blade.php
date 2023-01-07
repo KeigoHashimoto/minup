@@ -44,10 +44,12 @@
                     <td>{{ $expense->expense }}</td>
                     <td>{{ $expense->created_at }}</td>
                     <td>{{ Form::open(['route'=>['expense.delete',$expense->id],'method'=>'delete']) }}
-                            {{ Form::submit('削除',['class'=>'delete','onClick' => 'return deleteBtn();']) }}
+                            {{ Form::button('<i class="fas fa-trash"></i>',['class'=>'delete','type'=>'submit','onClick' => 'return deleteBtn();']) }}
                         {{ Form::close() }}
                     </td>
-                    <td>{!! link_to_route('expense.edit','編集',$expense->id,['class'=>'edit']) !!}</td>
+                    <td>
+                        <button class="edit" id="edit-btn"><i class="fas fa-pen"></i></button>
+                    </td>
                 </tr>
             @endforeach     
         </tbody>
@@ -66,6 +68,8 @@
     @endif
 </h3>    
 
+
+{{-- 帳票出力 --}}
 <div class="report">
     {{ Form::open(['route'=>['budget.report',$budget->id],'method'=>'get']) }}
         {{ Form::submit('帳票出力',['class'=>'report-btn']) }}
@@ -73,5 +77,26 @@
 </div>
 
 {!! link_to_route('budget.index','予算一覧に戻る',[],['class'=>'small']) !!}
+
+{{-- edit用モーダルフォーム --}}
+<div id="expense-edit">
+    {{ Form::model($expense,['route'=>['expense.update',$expense->id],'method'=>'put']) }}
+        <div class="form-group">
+            {!! Form::label('content','用途') !!}
+            {!! Form::text('content',null,['class'=>'form-control']) !!}
+        </div>
+    
+        <div class="form-group">
+            {!! Form::label('expense','出費') !!}
+            {!! Form::text('expense',null,['class'=>'form-control']) !!}
+        </div>
+    
+        <div class="form-group">
+            {!! Form::submit('編集',['class'=>'form-control submit']) !!}
+        </div>
+    {{ Form::close() }}
+</div>
+
+<div class="filter"></div>
 
 @endsection

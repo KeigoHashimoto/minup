@@ -16,12 +16,14 @@ class TasksController extends Controller
     public function store(Request $request){
         $request->validate([
             'task'=>'required|string|max:255',
-            'quantity' => 'integer',
+            'quantity'=>'max:10000',
+            'taskBudget' => 'max:100000000',
         ]);
         $task = new Task();
         $task -> user_id = \Auth::user()->id;
         $task -> task = $request -> task;
         $task -> quantity = $request -> quantity;
+        $task -> taskBudget = $request -> taskBudget;
         $task->save();
 
         return back();

@@ -6,18 +6,36 @@ function deleteBtn(){
         window.alert('キャンセルしました。');
         return false;
     }
-}
+};
 
 const taskBtn = document.getElementById('task-icon');
 const task = document.getElementById('tasks-form');
+const filter = document.querySelectorAll('.filter');
 
-function dropdown(btn,content){
+const editBtn = document.getElementById('edit-btn');
+const editContent = document.getElementById('expense-edit');
+
+function modal(btn,content,filter){
     $(btn).on('click',() => {
         $(content).toggle();
+        $(filter).fadeIn();
     })
 }
 
-dropdown(taskBtn,task);
+function modalClose(filter,content){
+    $(filter).on('click',() => {
+        $(content).fadeOut();
+        $(filter).fadeOut();
+    })
+}
+
+// タスク作成画面のモーダル
+modal(taskBtn,task,filter);
+modalClose(filter,task);
+
+// 出費の編集モーダル
+modal(editBtn,editContent,filter);
+modalClose(filter,editContent);
 
 const menuBtn = document.getElementById('nav-icon');
 const menu = document.getElementById('nav-menu');

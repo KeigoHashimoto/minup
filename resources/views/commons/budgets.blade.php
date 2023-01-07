@@ -9,9 +9,9 @@
                     {!! link_to_route('budget.show','【'.$budget->title.'】',[$budget->id],['class'=>'budget']) !!}
                 </div>
                 <div class="budget-btns">
-                    {!! link_to_route('budget.edit','編集',[$budget->id],['class'=>'small edit']) !!}
+                    <a href="{{ route('budget.edit',$budget->id) }}" class="edit"><i class="fas fa-pen"></i></a>
                     {{ Form::open(['route'=>['budget.delete',$budget->id],'method'=>'delete']) }}
-                        {{ Form::submit('削除',['class'=>'delete small default','onClick'=>'return deleteBtn();']) }}
+                        {{ Form::button('<i class="fas fa-trash"></i>',['class'=>'delete','type'=>'submit','onClick'=>'return deleteBtn();']) }}
                     {{ Form::close() }}
                 </div>
             </div>  
