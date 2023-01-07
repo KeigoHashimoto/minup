@@ -53,5 +53,6 @@ Route::group(['middleware'=>['auth']],function(){
     //tasks
     Route::get('/tasks',[App\Http\Controllers\TasksController::class,'index'])->name('tasks.index');
     Route::post('/tasks/store',[App\Http\Controllers\TasksController::class,'store'])->name('task.post');
+    Route::post('/tasks/{id}/status',[App\Http\Controllers\TasksController::class,'status'])->name('task.status');
     Route::delete('/tasks/{id}/delete',[App\Http\Controllers\TasksController::class,'destroy'])->name('task.delete');
 });

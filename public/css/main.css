@@ -455,6 +455,11 @@ td{
     margin:0 auto;
 }
 
+#tasks-form>form > .form-group{
+    display: flex;
+    column-gap:1rem;
+}
+
 #task-icon{
     font-size:3rem;
     position:fixed;
