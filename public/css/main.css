@@ -81,6 +81,10 @@ a:hover{
     --font:#0D0D0D;
 }
 
+.center{
+    text-align: center;
+}
+
 /* ログイン サインアップ */
 .form{
     width: 30%;
