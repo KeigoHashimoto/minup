@@ -6,7 +6,7 @@
     <h2 class="center">今月の予算</h2>
         @include('commons.budgets')
     @else
-        <p>予算を作成してください</p>
+        <p class="center">まだ今月分の予算がありません。</p>
     @endif
 
 @endsection
