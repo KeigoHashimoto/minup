@@ -105,6 +105,7 @@ class BudgetsController extends Controller
         })
         ->groupBy('month','year')
         ->get();
+        dd($budgets_month);
 
         return view('budgets.month',compact('budgets_month'));
     }
