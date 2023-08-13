@@ -18,7 +18,9 @@
         @endforeach
     @endif
 
-    @if($shareBudgets != null)
+    @if($shareBudgets == null)
+    <p class="center-title alert">まだ予算が登録されていません！</p>
+    @else
         @foreach($shareBudgets as $budget)
             <div class="index-budget">
                 <div class="budget-title">
@@ -34,4 +36,4 @@
             </div>  
         @endforeach
     @endif
-    
+
