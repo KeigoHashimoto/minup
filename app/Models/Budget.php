@@ -20,4 +20,8 @@ class Budget extends Model
     public function expenses(){
         return $this->hasMany(Expense::class);
     }
+
+    public function shareUsers(){
+        return $this->belongsToMany(Budget::class,'shares','budget_id','share_user_id');
+    }
 }

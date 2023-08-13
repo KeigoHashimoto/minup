@@ -50,6 +50,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('expense/{id}/edit',[App\Http\Controllers\ExpensesController::class,'edit'])->name('expense.edit');
     Route::put('expense/{id}/update',[App\Http\Controllers\ExpensesController::class,'update'])->name('expense.update');
 
+    Route::post('/share',[App\Http\Controllers\ShareController::class,'share'])->name('share');
+
     //tasks
     Route::get('/tasks',[App\Http\Controllers\TasksController::class,'index'])->name('tasks.index');
     Route::post('/tasks/store',[App\Http\Controllers\TasksController::class,'store'])->name('task.post');

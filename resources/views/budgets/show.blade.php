@@ -6,8 +6,16 @@
     <h1 class="center-title">
         {{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円
         <span>{!! link_to_route('budget.edit','編集',[$budget->id],['class'=>'budget-edit-btn']) !!}</span>
+        @if($shareExists->isEmpty())
+            <div id="share">
+                <Share :budget_id='{{$budget->id}}'></Share>
+            </div>
+        @endif
+
     </h1>
 </div>
+
+
 
 {{ Form::open(['route'=>['expenses.post',$budget->id],'class'=>'expense-form']) }}
     <div class="form-group">
