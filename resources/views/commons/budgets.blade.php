@@ -1,5 +1,7 @@
 
-    
+    @if(empty($budgets))
+        <p class="center-title alert">まだ予算が登録されていません！</p>
+    @else
         @foreach($budgets as $budget)
             <div class="index-budget">
                 <div class="budget-title">
@@ -31,4 +33,4 @@
                 </div>  
             @endforeach
         @endif
-
+    @endif
