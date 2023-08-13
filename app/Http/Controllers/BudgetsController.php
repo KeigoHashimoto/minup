@@ -101,7 +101,8 @@ class BudgetsController extends Controller
         $budgets_month = Budget::select('month','year',\DB::raw('count(month) as month_count'))
             ->orWhere('budgets.user_id','=',Auth::id())
             ->groupBy('month','year')
-            ->orderBy('month','asc')
+            ->orderBy('year','asc')
+            ->orderBy('month','desc')
             ->get();
 
         return view('budgets.month',compact('budgets_month'));
