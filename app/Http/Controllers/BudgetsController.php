@@ -98,14 +98,13 @@ class BudgetsController extends Controller
 
     public function month(){
         $budgets_month = Budget::join('shares','budgets.id','=','shares.budget_id')
-        ->select('month','year',DB::raw("count('month')"))
+        ->select('month','year',DB::raw('count(month)'))
         ->where(function($query){
             $query->where('shares.share_user_id','=',Auth::id())
             ->orWhere('budgets.user_id','=',Auth::id());
         })
         ->groupBy('month','year')
         ->get();
-        dd($budgets_month);
 
         return view('budgets.month',compact('budgets_month'));
     }
