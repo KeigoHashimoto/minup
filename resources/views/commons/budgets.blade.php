@@ -1,5 +1,5 @@
 
-    @if(empty($budgets))
+    @if(empty($budgets) && empty($shareBudgets))
         <p class="center-title alert">まだ予算が登録されていません！</p>
     @else
         @foreach($budgets as $budget)
