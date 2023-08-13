@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateShareTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('shares', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('budget_id');
-            $table->string('content');
-            $table->integer('expense');
+            $table->unsignedBigInteger('share_user_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('budget_id')->references('id')->on('budgets')->onDelete('cascade');
+            $table->foreign('share_user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -33,9 +31,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expenses',function(Blueprint $table){
-            $table->dropForeign('expenses_user_id_foreign');
-            $table->dropForeign('expenses_budget_id_foreign');
+        Schema::dropIfExists('shares',function(Blueprint $table){
+            $talbe->dropForeign('shares_budget_id_foreign');
+            $table->dropForeign('shares_share_user_id_foreign');
         });
     }
-};
+}

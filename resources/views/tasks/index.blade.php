@@ -28,7 +28,7 @@
     </div>
 
     @if($tasks->isEmpty())
-        <p class="center-title alert">タスクがありません。右下のアイコンからタスクを追加してください。</p>
+        <p class="center-title alert">書いたいものがありません。右下のアイコンから買いたいものを追加してください。</p>
     @else
     
         <h3 class="list-title">買いたいものリスト</h3>

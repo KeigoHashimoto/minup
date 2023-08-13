@@ -56,5 +56,9 @@ class User extends Authenticatable
     public function tasks(){
         return $this->hasMany(Task::class);
     }
+
+    public function shareBudgets(){
+        return $this->belongsToMany(Budget::class,'shares','share_user_id','budget_id');
+    }
 }
 
