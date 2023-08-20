@@ -104,6 +104,8 @@ class BudgetsController extends Controller
             ->orWhere('budgets.user_id','=',Auth::id());
         })
         ->groupBy('month','year')
+        ->orderBy('month','desc')
+        ->orderBy('year','asc')
         ->get();
 
         return view('budgets.month',compact('budgets_month'));

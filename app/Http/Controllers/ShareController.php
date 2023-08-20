@@ -28,4 +28,12 @@ class ShareController extends Controller
 
         return response()->json($message);
     }
+
+    public function shareRemove($budgetId){
+        $share = new Share();
+
+        $remove = $share->shareRemove($budgetId);
+
+        return back();
+    }
 }

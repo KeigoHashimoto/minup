@@ -1,6 +1,7 @@
 @charset "utf-8";
 input[type="submit"]{
     -webkit-appearance:none;
+    appearance:none;
 }
 
 body{
@@ -107,6 +108,17 @@ a:hover{
     display:block;
     margin: 0 auto;
     width:80%;
+}
+
+.remember-form-group{
+    display: flex;
+    font-size:.8rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.remember-form-group .form-control{
+    width: fit-content;
 }
 
 .form-group{

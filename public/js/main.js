@@ -8,6 +8,15 @@ function deleteBtn(){
     }
 };
 
+function removeShare(){
+    if(confirm('共有を解除しますか？')){
+        return true;
+    }else{
+        alert('共有の解除を中止しました');
+        return false;
+    }
+}
+
 const taskBtn = document.getElementById('task-icon');
 const task = document.getElementById('tasks-form');
 const filter = document.querySelectorAll('.filter');

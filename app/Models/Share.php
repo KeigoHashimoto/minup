@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use \Auth;
 
 class Share extends Model
 {
@@ -34,5 +35,17 @@ class Share extends Model
             ]);
             return true;
         }
+    }
+
+    public function shareRemove($budgetId){
+        $user = Auth::user();
+        $budget = Budget::findOrFail($budgetId);
+        if($user->shareBudgets()->exists($budget)){
+            $user->shareBudgets()->detach($budgetId);
+        }else{
+            return false;
+        }
+        
+        return true;
     }
 }

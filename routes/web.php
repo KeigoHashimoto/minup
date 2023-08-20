@@ -51,6 +51,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::put('expense/{id}/update',[App\Http\Controllers\ExpensesController::class,'update'])->name('expense.update');
 
     Route::post('/share',[App\Http\Controllers\ShareController::class,'share'])->name('share');
+    Route::post('/shareRemove/{budgetId}',[App\Http\Controllers\ShareController::class,'shareRemove'])->name('shareRemove');
 
     //tasks
     Route::get('/tasks',[App\Http\Controllers\TasksController::class,'index'])->name('tasks.index');

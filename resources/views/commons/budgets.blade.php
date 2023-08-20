@@ -26,8 +26,8 @@
                     </div>
                     <div class="budget-btns">
                         <a href="{{ route('budget.edit',$budget->id) }}" class="edit"><i class="fas fa-pen"></i></a>
-                        {{ Form::open(['route'=>['budget.delete',$budget->id],'method'=>'delete']) }}
-                            {{ Form::button('<i class="fas fa-trash"></i>',['class'=>'delete','type'=>'submit','onClick'=>'return deleteBtn();']) }}
+                        {{ Form::open(['route'=>['shareRemove',$budget->id],'method'=>'post']) }}
+                            {{ Form::button('<i class="fas fa-trash"></i>',['class'=>'delete','type'=>'submit','onClick'=>'return removeShare();']) }}
                         {{ Form::close() }}
                     </div>
                 </div>  

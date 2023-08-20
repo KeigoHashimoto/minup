@@ -23,6 +23,10 @@
         {{ Form::label('password','パスワード') }}
         {{ Form::password('password',['class'=>'form-control']) }}
     </div>
+    <div class="remember-form-group">
+        {{ Form::label('remember','ログイン状態を保持') }}
+        {{ Form::checkbox('remember',1,false,['class'=>'form-control']) }}
+    </div>
 
     <div class="form-group">
         {{ Form::submit('ログイン',['class'=>'form-control submit']) }}
