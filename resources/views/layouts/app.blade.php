@@ -9,8 +9,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href={{ asset('/css/main.css') }}>
+    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">     <link rel="stylesheet" href={{ asset('/css/main.css') }}>
 </head>
 <body>
     @include('commons.header')

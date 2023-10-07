@@ -8,6 +8,7 @@ use App\Http\Controllers\BudgetsController;
 use App\Models\Budget;
 use App\Models\User;
 use App\Models\Expense;
+use App\Models\FixedCostExpense;
 
 
 class ExpensesController extends Controller
@@ -58,5 +59,27 @@ class ExpensesController extends Controller
         $expense->save();
 
         return redirect()->action([BudgetsController::class,'index']);
+    }
+
+    public function fixedCostExpensesStore(Request $request){
+        $user=\Auth::user();
+        $fixedCostId = $request->fiexedCostId;
+        $budgetId = $request->budgetId;
+        // dd('cost:'. $fixedCostId. ' + budget'. $budgetId);
+
+        $expenses = FixedCostExpense::where('user_id','=',$user->id)
+                ->where('fixed_cost_id','=',$fixedCostId)
+                ->get();
+
+        foreach ($expenses as $e) {
+            $expense=new Expense;
+            $expense->user_id = $user->id;
+            $expense->budget_id = $budgetId;
+            $expense->content = $e->content;
+            $expense->expense = $e->expense;
+            $expense->save();
+        }
+    
+        return response()->json('登録完了しました');
     }
 }

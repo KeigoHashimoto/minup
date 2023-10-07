@@ -168,6 +168,5 @@ class BudgetsController extends Controller
 
         exit;
         // 処理を終了
-
     }
 }

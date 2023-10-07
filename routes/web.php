@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FixedCostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +59,10 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('/tasks/store',[App\Http\Controllers\TasksController::class,'store'])->name('task.post');
     Route::post('/tasks/{id}/status',[App\Http\Controllers\TasksController::class,'status'])->name('task.status');
     Route::delete('/tasks/{id}/delete',[App\Http\Controllers\TasksController::class,'destroy'])->name('task.delete');
+
+    //fixedCosts
+    Route::prefix('fixed-cost')->group(function() {
+        Route::get('create-form',[FixedCostsController::class,'fixedCostCreate'])->name('fixedCreate.form');
+        Route::post('store',[FixedCostsController::class,'fixedCostStore'])->name('fixedCost.store');
+    });
 });

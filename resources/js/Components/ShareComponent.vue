@@ -8,7 +8,7 @@
             <form @submit.prevent="share">  
                 <label>共有相手のメールアドレス</label>
                 <input type="text" v-model="umail" class="umail-form">
-                <input type="submit" value="共有する" class="share-btn">
+                <input type="submit" value="共有する" class="share-submit">
             </form>
         </div>
     </div>
@@ -73,11 +73,14 @@ export default{
 .share{
     font-size: 1.2rem;
     .share-btn{
-        background: green;
-        color:#fff;
+        background: rgb(245, 255, 134);
+        color:#333;
         border:none;
         cursor:pointer;
         border-radius:5px;
+        padding:10px;
+        border: none;
+        width: fit-content;
     }
 
     .umail-form{
@@ -95,6 +98,13 @@ export default{
         padding:7px;
         font-size:.7rem;    
 
+    }
+
+    .share-submit{
+        color: #fff;
+        background: var(--submit);
+        border: none;
+        border-radius: 5px;
     }
 }
 </style>

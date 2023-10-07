@@ -8,8 +8,8 @@ body{
     background: var(--base-color);
     padding: 0;
     margin: 0;
-    font-family: 'M PLUS 1p', sans-serif;
-    letter-spacing:1.5px;
+    font-family: "Sawarabi Gothic";
+    letter-spacing:3.5px;
 }
 
 .errors{
@@ -53,11 +53,11 @@ a:hover{
 
 .pinch::after{
     content:"残り僅か";
-    padding: 1px 5px;
+    padding: 1px 4px;
     margin-left: 5px;
     background: var(--danger);
     color:#fff;
-    font-size:.9rem;
+    font-size:.8rem;
     border-radius:3px;
 }
 .out{
@@ -66,18 +66,18 @@ a:hover{
 
 .out::after{
     content:"予算オーバー";
-    padding: 1px 5px;
+    padding: 1px 4px;
     margin-left: 5px;
     background: #888;
     color:#fff;
-    font-size:.9rem;
+    font-size:.8rem;
     border-radius:3px;
 }
 
 :root{
-    --main-color:#A6A6A6;
-    --base-color:#D9D9D9;
-    --submit:#023E73;
+    --main-color:linear-gradient(to right, #d8aeff, #c9fcff);
+    --base-color:linear-gradient(to bottom, #d6d6d6, #ffffff);
+    --submit:#51a4ed;
     --danger:#BF0404;
     --font:#0D0D0D;
 }
@@ -133,7 +133,13 @@ a:hover{
     width: 100%;
     border-radius:5px;
     border:1px solid #777;
-    height:2rem
+    height:2.5rem;
+    font-size: 1.5rem;
+}
+
+.form-control.submit{
+    font-size:1.2rem;
+    height: fit-content;
 }
 
 .month-form{
@@ -176,7 +182,7 @@ a:hover{
 /* header */
 header{
     background: var(--main-color);
-    color:#fff;
+    color:#333;
 }
 
 #nav-icon{
@@ -221,12 +227,14 @@ header{
 .menu-item{
     display:block;
     width: fit-content;
-    color:#fff;
+    color:#333;
 }
 
 @media screen and (max-width:540px){
+
     .menu-item{
         font-size:1rem;
+        color: #fff;
     }
 
     .greet{
@@ -247,7 +255,7 @@ header{
         left: 0;
         margin: 0;
         padding-top: 5rem;
-        line-height:2
+        line-height:2;
     }
 
     .slideOut{
@@ -319,7 +327,7 @@ header{
     border-radius:5px;
     width: 50px;
     height: 30px;
-    color: rgb(189, 189, 1);
+    color: rgb(146, 255, 78);
     font-size:1.5rem;
     border:none;
     background: none;
@@ -357,11 +365,9 @@ header{
     z-index:99;
 }
 
-
-
 .budget-show-title > .center-title > span{
     padding:.3rem .2rem;
-    background: yellow;
+    background: rgb(255, 196, 250);
     border-radius:5px;
     font-size:.7rem;
 }
@@ -375,7 +381,7 @@ header{
 /*残額*/
 .remaining{
     text-align: center;
-    font-size:2rem;
+    font-size:1.5em;
 }
 
 .report-btn{
@@ -385,7 +391,7 @@ header{
     height: 2rem;
     margin: 1rem auto;
     background: var(--main-color);
-    color:#fff;
+    color:#333;
     font-weight:bold;
     letter-spacing:2px;
     border:none;
@@ -407,7 +413,8 @@ table{
 }
 
 th,td{
-    border:1px solid var(--main-color);
+    border:1px solid #ccc;
+    padding: 4px 4px;
 }
 
 th{

@@ -17,6 +17,7 @@
             <div class='menu slideOut' id='nav-menu'>
                 {!! link_to_route('budget.index','ホームへ',[],['class'=>'menu-item']) !!}
                 {!! link_to_route('budget.create','予算の作成',[],['class'=>'menu-item']) !!}
+                {!! link_to_route('fixedCreate.form','固定値作成',[],['class'=>'menu-item']) !!}
                 {!! link_to_route('budget.month','月ごと一覧',[],['class'=>'menu-item']) !!}
                 {!! link_to_route('tasks.index','買うものリスト',[],['class'=>'menu-item']) !!}
             </div>

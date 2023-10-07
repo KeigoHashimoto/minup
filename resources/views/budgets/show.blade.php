@@ -6,12 +6,16 @@
     <h1 class="center-title">
         {{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円
         <span>{!! link_to_route('budget.edit','編集',[$budget->id],['class'=>'budget-edit-btn']) !!}</span>
-        @if($shareExists->isEmpty())
+        <div class="budget-control-btns">
+            @if($shareExists->isEmpty())
             <div id="share">
                 <Share :budget_id='{{$budget->id}}'></Share>
             </div>
-        @endif
-
+            @endif
+            <div id="fixed-cost">
+                <fixed-cost-drop-down :budget_id='{{ $budget->id }}'></fixed-cost-drop-down>
+            </div>
+        </div>
     </h1>
 </div>
 
@@ -48,7 +52,7 @@
                 <tr>
                     <td>{{ $expense->content }}</td>
                     <td>{{ $expense->expense }}</td>
-                    <td>{{ $expense->created_at }}</td>
+                    <td>{{ $expense->created_at->format('Y-m-d') }}</td>
                     <td>{{ Form::open(['route'=>['expense.delete',$expense->id],'method'=>'delete']) }}
                             {{ Form::button('<i class="fas fa-trash"></i>',['class'=>'delete','type'=>'submit','onClick' => 'return deleteBtn();']) }}
                         {{ Form::close() }}
