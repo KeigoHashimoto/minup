@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 class="center">出費の編集</h2>
-    <div id="expense-edit">
+    <div class='form'>
+        <h2 class="center">出費の編集</h2>
         {{ Form::model($expense,['route'=>['expense.update',$expense->id],'method'=>'put']) }}
             <div class="form-group">
                 {!! Form::label('content','用途') !!}
