@@ -1,11 +1,8 @@
 <header>
-    <div>
+    <div class='header'>
         <p class="greet">こんにちは
             @if(Auth::check())
             {{ \Auth::user()->name}}さん</p>
-            <nav>
-                {!! link_to_route('logout','ログアウト',[],['class'=>'menu-item nav']) !!}
-            </nav>
             
             <div id="nav-icon">
                 <i class="fas fa-bars"></i>
@@ -20,6 +17,7 @@
                 {!! link_to_route('fixedCreate.form','固定値作成',[],['class'=>'menu-item']) !!}
                 {!! link_to_route('budget.month','月ごと一覧',[],['class'=>'menu-item']) !!}
                 {!! link_to_route('tasks.index','買うものリスト',[],['class'=>'menu-item']) !!}
+                {!! link_to_route('logout','ログアウト',[],['class'=>'menu-item']) !!}
             </div>
             @else
 

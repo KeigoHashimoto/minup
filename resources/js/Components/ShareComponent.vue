@@ -3,8 +3,7 @@
         <div v-if="message != ''" class="errMsg">
             {{ message }}
         </div>
-        <button @click="view = !view" class="share-btn">この予算を共有する</button>
-        <div v-show="view">
+        <div>
             <form @submit.prevent="share">  
                 <label>共有相手のメールアドレス</label>
                 <input type="text" v-model="umail" class="umail-form">
@@ -28,7 +27,7 @@ export default{
         budget_id:{
             type:Number,
             require:true,
-        }
+        },
     },
     methods:{
         share(){
@@ -78,7 +77,7 @@ export default{
         border:none;
         cursor:pointer;
         border-radius:5px;
-        padding:10px;
+        padding:10  px;
         border: none;
         width: fit-content;
     }

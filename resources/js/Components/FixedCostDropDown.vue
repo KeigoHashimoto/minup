@@ -1,11 +1,9 @@
 <template>
   <div class="fixed-cost-drop">
-    <button @click="toggle">固定値を挿入する</button>
     <select name="fixedCostSelect"
      v-model="costId"
-     v-if="toggleFlag"
      @change="submit">
-      <option value="">選択して下さい</option>
+      <option value="">固定費を選択して下さい</option>
       <option :value="cost.id" 
       v-for="(cost,index) in costs" 
       :key="index"
@@ -13,56 +11,63 @@
         {{ cost.cost_title }}
       </option>
     </select>
-
+    <small class="small"><a href="/fixed-cost/create-form">固定費はこちらから登録できます。</a></small>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, defineProps } from 'vue';
-
-const costs = ref(null);
-const costId = ref("");
-const props = defineProps({
-    'budget_id': Number
-})
-const toggleFlag = ref(false);
-
-const toggle = () => {
-    toggleFlag.value = !toggleFlag.value;
-}
-
-const getCost = () => {
-  axios.get('/api/get-costs')
-  .then(res => {
-    costs.value = res.data;
-  })
-  .catch(err => {
-    console.log(err);  
-  })
-}
-
-const submit = () => {
-    if (confirm('固定費を追加しますか？')) {
-        const data = {
-        fiexedCostId: costId.value,
-        budgetId : props.budget_id
-        }
-        axios.post('/api/post-fixed-cost-expenses',data)
-        .then(res => {
-            console.log(res);
-            window.location.href = `/budget/${props.budget_id}/show`;
-        })
-        .catch(err => {
-            console.log(err);
-        }) 
-    } else {
-        costId.value = "";
+<script>
+import { ref } from 'vue';
+export default{
+  data() {
+    return {
+      costs: ref(null),
+      costId: ref(""),
+      toggleFlag: ref(false)
     }
+  },
+
+  props: {
+    budget_id: {
+      type: Number
+    }
+  },
+
+  methods: {
+    getCost(){
+      axios.get('/api/get-costs')
+      .then(res => {
+        this.costs = res.data;
+      })
+      .catch(err => {
+        console.log(err);  
+      })
+    },
+
+    submit(){
+      if (confirm('固定費を追加しますか？')) {
+          const data = {
+          fiexedCostId: this.costId,
+          budgetId : this.budget_id
+          }
+          axios.post('/api/post-fixed-cost-expenses',data)
+          .then(res => {
+              window.location.href = `/budget/${this.budget_id}/show`;
+          })
+          .catch(err => {
+              console.log(err);
+          }) 
+      } else {
+          this.costId = "";
+      }
+    }
+  },
+
+  mounted() {
+    this.getCost()
+  }
 }
 
-onMounted(() => {
-    getCost();
-})
+
 
 </script>
 
@@ -88,5 +93,10 @@ onMounted(() => {
  .fixed-cost-drop {
     display: flex;
     flex-direction: column;
+ }
+
+ .small {
+   letter-spacing: 1;
+   text-decoration: underline;
  }
 </style>

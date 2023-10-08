@@ -21,7 +21,7 @@
     </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src={{ asset('js/main.js') }}></script>
     <script src={{ mix('js/app.js') }}></script>
+    <script src={{ asset('js/main.js') }}></script>
 </body>
 </html>

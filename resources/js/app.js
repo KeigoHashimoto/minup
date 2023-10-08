@@ -1,15 +1,8 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
-import Share from './Components/ShareComponent.vue';
+import BudgetControlButtons from './Components/BudgetControlButtons.vue';
 import FixedCostExpense from './Components/FixedCostExpense.vue';
-import FixedCostDropDown from './Components/FixedCostDropDown.vue';
-
-createApp({
-    components: {
-        Share
-    }
-}).mount('#share');
 
 createApp({
     components: {
@@ -19,6 +12,6 @@ createApp({
 
 createApp({
     components: {
-        FixedCostDropDown
+        BudgetControlButtons
     }
-}).mount('#fixed-cost')
+}).mount('#budget-control-btns');

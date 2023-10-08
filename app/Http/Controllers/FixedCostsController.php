@@ -18,8 +18,28 @@ class FixedCostsController extends Controller
         $contents = $request->input('content');
         $expenses = $request->input('expense');
         $user = Auth::user();
+        $invalidFlag = false;
 
         //FixedCostに登録
+        if ($costTitle == null || $costTitle == '') {
+            $invalidFlag = true; 
+        }
+        if (mb_strlen($costTitle, 'UTF-8') > 256) {
+            $invalidFlag = true;
+        } 
+        
+        foreach ($expenses as $expense) {
+            if (!preg_match('/^[0-9]+$/', $expense)) {
+                $invalidFlag = true;
+            }
+            if (mb_strlen($expense, 'UTF-8') > 256) {
+                $invalidFlag = true;
+            } 
+        }
+        if ($invalidFlag) {
+            return redirect()->back();
+        }
+        
         $fixedCost = new FixedCost();
         $newCost = $fixedCost->create([
             'user_id' => $user->id,
@@ -28,16 +48,24 @@ class FixedCostsController extends Controller
         $fixedCostId = $newCost->id;
 
         //fixedCostExpenseに登録
-        for($i=0;$i < count($contents);$i++){
-            $fixedCostExpense = new FixedCostExpense();
-            $fixedCostExpense->create([
-                'user_id' => $user->id,
-                'fixed_cost_id' => $fixedCostId,
-                'content' => $contents[$i],
-                'expense' => $expenses[$i]
-            ]);
+        if($contents != null && $expenses != null) {
+            for($i=0;$i < count($contents);$i++){
+                if ($contents[$i] != null) {
+                    $fixedCostExpense = new FixedCostExpense();
+                    $fixedCostExpense->create([
+                        'user_id' => $user->id,
+                        'fixed_cost_id' => $fixedCostId,
+                        'content' => $contents[$i],
+                        'expense' => $expenses[$i]
+                    ]);
+                } else {
+                    break;
+                }
+            }
+        } else {
+             return redirect()->back();
         }
-        
+
         return redirect()->route('fixedCreate.form');
     }
 

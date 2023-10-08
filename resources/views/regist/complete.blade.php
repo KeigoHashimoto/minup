@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    {{ $user->name }}さんを登録しました。
+    <div class="regist-complete-greet">
+        {{ $user->name }}さんを登録しました。
+        <h1>Thanks You!</h1>
+        <p>あなたの生活に小さな潤いをもたらしますように。</p>
+    </div>
 
-    <h1>Thanks You!</h1>
-    <p>あなたの生活に小さな潤いをもたらしますように。</p>
-
-    {!! link_to_route('budget.index','ホームへ',[],['class'=>'form-control submit']) !!}
+    {!! link_to_route('budget.index','ログインする',[],['class'=>'form-control submit']) !!}
 @endsection

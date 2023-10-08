@@ -5,21 +5,15 @@
 <div class="budget-show-title">
     <h1 class="center-title">
         {{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円
-        <span>{!! link_to_route('budget.edit','編集',[$budget->id],['class'=>'budget-edit-btn']) !!}</span>
-        <div class="budget-control-btns">
-            @if($shareExists->isEmpty())
-            <div id="share">
-                <Share :budget_id='{{$budget->id}}'></Share>
-            </div>
-            @endif
-            <div id="fixed-cost">
-                <fixed-cost-drop-down :budget_id='{{ $budget->id }}'></fixed-cost-drop-down>
-            </div>
+        <div id="budget-control-btns">
+            <budget-control-buttons 
+            :share_exists = '{{ $shareExists }}' 
+            :budget_id = '{{ $budget->id}}'
+            >
+            </budget-control-buttons>
         </div>
     </h1>
 </div>
-
-
 
 {{ Form::open(['route'=>['expenses.post',$budget->id],'class'=>'expense-form']) }}
     <div class="form-group">
