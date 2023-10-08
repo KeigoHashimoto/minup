@@ -43,6 +43,10 @@ a{
 
 a:hover{
     color:#777;
+    transition:all .2s;
+}
+
+a.menu-item:hover {
     font-size:1.1rem;
     transition:all .2s;
 }
@@ -76,7 +80,7 @@ a:hover{
 
 :root{
     --main-color:linear-gradient(to right, #d8aeff, #c9fcff);
-    --base-color:linear-gradient(to bottom, #d6d6d6, #ffffff);
+    --base-color:linear-gradient(to bottom, #e5e5e5, #ffffff);
     --submit:#51a4ed;
     --danger:#BF0404;
     --edit: #d549ff;
@@ -92,10 +96,11 @@ a:hover{
 /* ログイン サインアップ */
 .form{
     width: 30%;
-    padding:7rem 3rem;
-    background: #fff;
+    padding:4rem 3rem;
+    background: var(--base-color);
     border-radius:10px;
-    margin:3rem auto;
+    margin:1.5rem auto;
+    box-shadow:2px 2px 5px #ccc;
 }
 @media screen and (max-width:540px){
     .form{
@@ -676,4 +681,8 @@ td{
 
 .fixed-cost-btn {
     color: var(--fixed-cost);
+}
+
+.budget-edit-btn {
+    color: var(--edit);
 }
