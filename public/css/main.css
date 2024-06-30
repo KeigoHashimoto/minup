@@ -414,6 +414,29 @@ header{
     margin:0 auto;
 }
 
+.use-header {
+    width: 40%;
+}
+
+.expenses-header {
+    width: 20%;
+}
+
+.create-date-header {
+    width: 20%;
+}
+
+.delete-header {
+    width: 10%;
+}
+
+.edit-header {
+    width: 10%;
+}
+
+
+
+
 /*残額*/
 .remaining{
     text-align: center;

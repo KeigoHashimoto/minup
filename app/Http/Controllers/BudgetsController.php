@@ -13,7 +13,6 @@ use App\Models\Share;
 class BudgetsController extends Controller
 {
     public function index(){
-
         $budgets = Budget::where('year','=',(int)date('Y'))
         ->where('month','=',(int)date('m'))
         ->where('user_id','=',Auth::id())
@@ -104,8 +103,8 @@ class BudgetsController extends Controller
             ->orWhere('budgets.user_id','=',Auth::id());
         })
         ->groupBy('month','year')
+        ->orderBy('year','desc')
         ->orderBy('month','desc')
-        ->orderBy('year','asc')
         ->get();
 
         return view('budgets.month',compact('budgets_month'));
@@ -113,6 +112,7 @@ class BudgetsController extends Controller
 
     public function monthShow($year,$month){
         $budgets = Budget::where('month','=',$month)
+        ->where('year','=',$year)
         ->where('user_id','=',Auth::id())
         ->orderBy('created_at','desc')
         ->get();

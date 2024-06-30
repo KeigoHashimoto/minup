@@ -33,11 +33,11 @@
     <table>
         <thead>
             <tr>
-                <th>用途</th>
-                <th>出費</th>
-                <th>日時</th>
-                <th>削除</th>
-                <th>編集</th>
+                <th class="use-header">用途</th>
+                <th class="expenses-header">出費</th>
+                <th class="create-date-header">日時</th>
+                <th class="delete-header">削除</th>
+                <th class="edit-header">編集</th>
             </tr>
         </thead>
     
@@ -46,7 +46,7 @@
                 <tr>
                     <td>{{ $expense->content }}</td>
                     <td>{{ $expense->expense }}</td>
-                    <td>{{ $expense->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $expense->created_at->format('y/m/d') }}</td>
                     <td>{{ Form::open(['route'=>['expense.delete',$expense->id],'method'=>'delete']) }}
                             {{ Form::button('<i class="fas fa-trash"></i>',['class'=>'delete','type'=>'submit','onClick' => 'return deleteBtn();']) }}
                         {{ Form::close() }}
