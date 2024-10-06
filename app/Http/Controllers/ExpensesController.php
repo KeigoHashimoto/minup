@@ -9,7 +9,7 @@ use App\Models\Budget;
 use App\Models\User;
 use App\Models\Expense;
 use App\Models\FixedCostExpense;
-
+use App\Models\FixedCost;
 
 class ExpensesController extends Controller
 {
@@ -82,4 +82,6 @@ class ExpensesController extends Controller
     
         return response()->json('登録完了しました');
     }
+
+    
 }

@@ -11,7 +11,6 @@
         <input class="form-control" name="expense[]" type="text">
       </div>
     </div>
-    <hr>
     <div class="expenses-form" v-for="(input,index) in inputs" :key="index">
       <div class="form-group">
         <label for="content">用途</label>

@@ -3,10 +3,12 @@
 @section('content')
     {{ Form::open(['route'=>'fixedCost.store','class'=>'form']) }}
     <h2 class="center-title">固定費の作成</h2>
+        {!! link_to_route('fixedCost.index','一覧はこちら',[],['class'=>'small']) !!}
             <div class="form-group">
                 {{ Form::label('cost-title','固定費名') }}
                 {{ Form::text('cost-title',null,['class'=>'form-control','placeholder'=>'(例)生活固定費 etc']) }}
             </div>
+            <hr />
         <div id="fixed-cost-expenses">
             <fixed-cost-expense></fixed-cost-expense>
         </div>

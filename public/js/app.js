@@ -21955,6 +21955,13 @@ __webpack_require__.r(__webpack_exports__);
         console.log(err);
       });
     },
+    deleteFixedCost: function deleteFixedCost(id) {
+      axios.post('/api/fixedCostDelete', id).then(function (res) {
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err.message);
+      });
+    },
     submit: function submit() {
       var _this2 = this;
       if (confirm('固定費を追加しますか？')) {
@@ -22158,7 +22165,8 @@ var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
   }, "固定費を選択して下さい", -1 /* HOISTED */);
 });
 var _hoisted_3 = ["value"];
-var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_4 = ["onClick"];
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
     "class": "small"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -22179,8 +22187,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       value: cost.id,
       key: index
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cost.cost_title), 9 /* TEXT, PROPS */, _hoisted_3);
-  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.costId]]), _hoisted_4]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cost.cost_title) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      onClick: function onClick($event) {
+        return $options.deleteFixedCost(cost.id);
+      }
+    }, "削除", 8 /* PROPS */, _hoisted_4)], 8 /* PROPS */, _hoisted_3);
+  }), 128 /* KEYED_FRAGMENT */))], 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.costId]]), _hoisted_5]);
 }
 
 /***/ }),

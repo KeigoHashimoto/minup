@@ -13,15 +13,16 @@ use App\Models\Share;
 class BudgetsController extends Controller
 {
     public function index(){
-        $budgets = Budget::where('year','=',(int)date('Y'))
-        ->where('month','=',(int)date('m'))
-        ->where('user_id','=',Auth::id())
-        ->orderBy('budgets.created_at','desc')
+        $budgets = Budget::select('budgets.*')
+        ->leftjoin('shares', 'budgets.id', '=', 'shares.budget_id')
+        ->where('year', '=', (int)date('Y'))
+        ->where('month', '=', (int)date('m'))
+        ->where('user_id', '=', Auth::id())
+        ->orderBy('budgets.created_at', 'desc')
         ->get();
-
-        $shareBudgets = Auth::user()->shareBudgets()->where('month',(int)date('m'))->get();
+        
               
-        return view('home',compact('budgets','shareBudgets')); 
+        return view('home',compact('budgets')); 
     }
 
     public function create(){
@@ -46,7 +47,7 @@ class BudgetsController extends Controller
         $budget->month = $request -> month;
         $budget->save();
 
-        return redirect('/');
+        return redirect()->route('budget.show', ['id' => $budget->id]);
     }
 
     public function show($id){
@@ -92,16 +93,14 @@ class BudgetsController extends Controller
         $budget->month = $request->month;
         $budget->save();
 
-        return redirect('/');
+        return redirect()->route('budget.show', ['id' => $budget->id]);
     }
 
     public function month(){
         $budgets_month = Budget::leftjoin('shares','budgets.id','=','shares.budget_id')
         ->select('month','year',DB::raw('count(month)'))
-        ->where(function($query){
-            $query->where('shares.share_user_id','=',Auth::id())
-            ->orWhere('budgets.user_id','=',Auth::id());
-        })
+        ->where('shares.share_user_id','=',Auth::id())
+        ->orWhere('budgets.user_id','=',Auth::id()) 
         ->groupBy('month','year')
         ->orderBy('year','desc')
         ->orderBy('month','desc')
@@ -111,62 +110,21 @@ class BudgetsController extends Controller
     }
 
     public function monthShow($year,$month){
-        $budgets = Budget::where('month','=',$month)
-        ->where('year','=',$year)
-        ->where('user_id','=',Auth::id())
-        ->orderBy('created_at','desc')
+        // $budgets = Budget::where('month','=',$month)
+        // ->where('year','=',$year)
+        // ->where('user_id','=',Auth::id())
+        // ->orderBy('created_at','desc')
+        // ->get();
+
+        // $shareBudgets = Auth::user()->shareBudgets()->where('month',$month)->get();
+
+        $budgets = Budget::select('budgets.*')
+        ->leftjoin('shares', 'budgets.id', '=', 'shares.budget_id')
+        ->where('year', '=', $year)
+        ->where('month', '=', $month)
+        ->where('user_id', '=', Auth::id())
+        ->orderBy('budgets.created_at', 'desc')
         ->get();
-
-        $shareBudgets = Auth::user()->shareBudgets()->where('month',$month)->get();
-
-        return view('budgets.monthShow',compact('budgets','shareBudgets'));
+        return view('budgets.monthShow',compact('budgets'));
     }
-
-    // public function report($id){
-    //     //該当の予算を取得
-    //     $budget = Budget::findOrfail($id);
-    //     //該当予算に対する出費を取得
-    //     $expenses = $budget->expenses()->get();
-
-    //     $date=date('YmdHis');
-
-    //     $file_path = "reports/{$budget->title}{$date}.csv";
-
-    //     //ファイルを新規作成モードで開く
-    //     $fp = fopen($file_path,"w");
-    //     //csvファイルにshiftt-JIS形式で保存
-    //     $budgetString = [];
-    //     $budgetString[] = mb_convert_encoding($budget->title, "sjis");
-    //     $budgetString[] = mb_convert_encoding($budget->budget, "sjis");
-    //     fputcsv($fp,$budgetString);
-    //     //ファイルを閉じる
-    //     fclose($fp);
-
-    //     //ファイルを追記モードで開く
-    //     $fp2 = fopen($file_path,"a");
-    //     //出費をforeachで一個ずつ取り出す
-    //     foreach($expenses as $content){
-    //         $string = [];
-    //         $string[] = mb_convert_encoding($content->content ,"sjis");
-    //         $string[] = mb_convert_encoding($content->expense ,"sjis");
-    //         $string[] = mb_convert_encoding($content->created_at ,"sjis");
-    //         fputcsv($fp2,$string);
-    //     }
-    //     //csvに追記保存
-    //     fclose($fp2);
-
-    //     header('Content-Type: application/octet-stream');
-    //     // ファイルのコンテンツタイプを指定
-    //     header('Content-Disposition:attachment;filename = "budget.csv');
-    //     // ファイルのダウンロードバーを表示; ダウンロード後のファイル名を設定
-    //     header('Content-Length: '.filesize( $file_path ));
-    //     // ファイルの大きさを明示
-    //     echo file_get_contents($file_path);
-    //     // ファイルを出力
-
-    //     unlink($file_path);
-
-    //     exit;
-    //     // 処理を終了
-    // }
 }

@@ -64,5 +64,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::prefix('fixed-cost')->group(function() {
         Route::get('create-form',[FixedCostsController::class,'fixedCostCreate'])->name('fixedCreate.form');
         Route::post('store',[FixedCostsController::class,'fixedCostStore'])->name('fixedCost.store');
+        Route::get('index',[FixedCostsController::class,'fixedCostindex'])->name('fixedCost.index');
+        Route::post('delete-fixed-cost', [FixedCostsController::class, 'fixedCostDelete'])->name('fixedCost.delete');
     });
 });

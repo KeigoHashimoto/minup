@@ -66,14 +66,32 @@ class FixedCostsController extends Controller
              return redirect()->back();
         }
 
-        return redirect()->route('fixedCreate.form');
+        return redirect('/');
     }
 
     public function getCosts() {
         $user = Auth::user();
         $costs = FixedCost::where('user_id','=',$user->id)->get();
 
-
         return response()->json($costs);
+    }
+
+    public function fixedCostindex() {
+        $user = Auth::user();
+        $costs = FixedCost::where('user_id','=',$user->id)->get();
+
+        return view('fixedCosts/fixedCostIndex', compact('costs'));
+    }
+
+    public function fixedCostDelete(Request $request)
+    {
+        $fixedCostId = $request->id;
+        $fixedCost = FixedCost::findOrFail($fixedCostId);
+        try {
+            $fixedCost->delete();
+        } catch (Exeption $e) {
+
+        }
+        return redirect()->route('fixedCost.index');
     }
 }
