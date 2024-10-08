@@ -13,11 +13,15 @@ use App\Models\Share;
 class BudgetsController extends Controller
 {
     public function index(){
-        $budgets = Budget::select('budgets.*')
+        $budgets = Budget::select(['budgets.id', 'budgets.title', 'budgets.year', 'budgets.month', 'users.name'])
         ->leftjoin('shares', 'budgets.id', '=', 'shares.budget_id')
-        ->where('year', '=', (int)date('Y'))
-        ->where('month', '=', (int)date('m'))
-        ->where('user_id', '=', Auth::id())
+        ->leftjoin('users', 'budgets.user_id', '=', 'users.id')
+        ->where(function ($query) {
+            $query->where('budgets.user_id', '=', Auth::id())
+                  ->orWhere('shares.share_user_id', '=', Auth::id());
+        })
+        ->where('budgets.year', '=', (int)date('Y'))
+        ->where('budgets.month', '=', (int)date('m'))
         ->orderBy('budgets.created_at', 'desc')
         ->get();
         
@@ -53,13 +57,13 @@ class BudgetsController extends Controller
     public function show($id){
         $budget=Budget::findOrFail($id);
         $expenses=$budget->expenses;
-
         $sum = $expenses->sum('expense');
 
         $shareExists = Share::join('budgets','shares.budget_id','=','budgets.id')
         ->where('shares.budget_id','=',$id)
         ->where('shares.share_user_id','=',Auth::id())
         ->get();
+        
 
         return view('budgets.show',compact('budget','expenses','sum','shareExists'));
     }
@@ -97,8 +101,8 @@ class BudgetsController extends Controller
     }
 
     public function month(){
-        $budgets_month = Budget::leftjoin('shares','budgets.id','=','shares.budget_id')
-        ->select('month','year',DB::raw('count(month)'))
+        $budgets_month = Budget::select('month','year',DB::raw('count(month) AS 件数'))
+        ->leftjoin('shares','budgets.id','=','shares.budget_id')
         ->where('shares.share_user_id','=',Auth::id())
         ->orWhere('budgets.user_id','=',Auth::id()) 
         ->groupBy('month','year')
@@ -110,21 +114,20 @@ class BudgetsController extends Controller
     }
 
     public function monthShow($year,$month){
-        // $budgets = Budget::where('month','=',$month)
-        // ->where('year','=',$year)
-        // ->where('user_id','=',Auth::id())
-        // ->orderBy('created_at','desc')
-        // ->get();
-
-        // $shareBudgets = Auth::user()->shareBudgets()->where('month',$month)->get();
-
-        $budgets = Budget::select('budgets.*')
+        $budgets = Budget::select(['budgets.id', 'budgets.title', 'budgets.year', 'budgets.month', 'users.name'])
         ->leftjoin('shares', 'budgets.id', '=', 'shares.budget_id')
-        ->where('year', '=', $year)
-        ->where('month', '=', $month)
-        ->where('user_id', '=', Auth::id())
+        ->leftjoin('users', 'budgets.user_id', '=', 'users.id')
+        ->where(function ($query) {
+            $query->where('budgets.user_id', '=', Auth::id())
+                  ->orWhere('shares.share_user_id', '=', Auth::id());
+        })
+        ->where('budgets.year', '=', $year)
+        ->where('budgets.month', '=', $month)
         ->orderBy('budgets.created_at', 'desc')
-        ->get();
-        return view('budgets.monthShow',compact('budgets'));
+        ->get(); 
+
+        $userId = Auth::id();
+        
+        return view('budgets.monthShow',compact('budgets', 'userId'));
     }
 }

@@ -506,6 +506,14 @@ td{
     display:block;
     margin:2rem auto;
 }
+.monthCnt {
+    display: inline-block;
+    color:red;
+    font-size:14px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
 
 .tasks{
     max-width:800px;
