@@ -67,4 +67,6 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('index',[FixedCostsController::class,'fixedCostindex'])->name('fixedCost.index');
         Route::post('delete-fixed-cost', [FixedCostsController::class, 'fixedCostDelete'])->name('fixedCost.delete');
     });
+
+    Route::get('/{id}/chart', [App\Http\Controllers\ExpensesController::class, 'showChart'])->name('chart');
 });

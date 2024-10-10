@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="budget-show-title">
+    {!! link_to_route('chart','グラフ(β版)',['id' => $budget->id],['class'=>'small']) !!}
     <h1 class="center-title">
         {{ '【'.$budget->title.'】' }}の予算：<br>{{ $budget->budget }}円
         <div id="budget-control-btns">
@@ -12,6 +13,7 @@
             >
             </budget-control-buttons>
         </div>
+        
     </h1>
 </div>
 

@@ -83,5 +83,12 @@ class ExpensesController extends Controller
         return response()->json('登録完了しました');
     }
 
-    
+    public function showChart($id)
+    {
+        $expenses = Budget::findOrFail($id)
+        ->rightjoin('expenses', 'expenses.budget_id', '=', 'budgets.id')
+        ->get();
+
+        return view('chart/chart', ['expenses' => $expenses]);
+    }
 }
