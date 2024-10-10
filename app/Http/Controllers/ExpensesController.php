@@ -85,9 +85,9 @@ class ExpensesController extends Controller
 
     public function showChart($id)
     {
-        $expenses = Budget::findOrFail($id)
-        ->rightjoin('expenses', 'expenses.budget_id', '=', 'budgets.id')
-        ->get();
+        $expenses = Budget::rightJoin('expenses', 'expenses.budget_id', '=', 'budgets.id')
+            ->where('budgets.id', $id)
+            ->get();
 
         return view('chart/chart', ['expenses' => $expenses]);
     }
