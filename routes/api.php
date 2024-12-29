@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FixedCostsController;
 use App\Http\Controllers\ExpensesController;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/get-costs',[FixedCostsController::class,'getCosts']);
     Route::post('/post-fixed-cost-expenses', [ExpensesController::class, 'fixedCostExpensesStore']);
 });
+
+Route::post('/post-budget', [ApiController::class, 'apiBudgetRegister']);
+Route::post('/post-expense', [ApiController::class, 'apiExpensesRegister']);
 

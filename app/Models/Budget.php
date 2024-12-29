@@ -11,7 +11,7 @@ class Budget extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','budget'];
+    protected $fillable = ['title','budget', 'month', 'year', 'user_id'];
 
     public function user(){
         return $this->belongsTo(User::class);
