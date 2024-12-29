@@ -15,7 +15,7 @@
         <div class="form-group">
             {{ Form::label('month','予算月') }}
             <p>
-                {{ Form::number('year',intval(date('Y')),) }}年{{ Form::number('month',intval(date('m')),['class'=>'month-form']) }}月分
+                {{ Form::number('year',intval(date('Y')),) }}年{{ Form::number('month',intval(date('m')),['class'=>'month-form','min' => 1, 'max' => 12]) }}月分
             </p>
         </div>
 

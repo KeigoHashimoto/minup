@@ -52,13 +52,15 @@ class ExpensesController extends Controller
         ]);
 
         $user=\Auth::user();
+        // 予算ID取得
+        $budget_id = $request->budget_id;
 
         $expense = Expense::findOrFail($id);
         $expense->content = $request->content;
         $expense->expense = $request->expense;
         $expense->save();
 
-        return redirect()->action([BudgetsController::class,'index']);
+        return redirect()->route('budget.show', ['id' => $budget_id]);
     }
 
     public function fixedCostExpensesStore(Request $request){

@@ -4,6 +4,7 @@
     <div class='form'>
         <h2 class="center">出費の編集</h2>
         {{ Form::model($expense,['route'=>['expense.update',$expense->id],'method'=>'put']) }}
+            {{ Form::hidden('budget_id', $expense->budget->id)}}
             <div class="form-group">
                 {!! Form::label('content','用途') !!}
                 {!! Form::text('content',null,['class'=>'form-control']) !!}
