@@ -12,8 +12,11 @@ class ApiController extends Controller
     {
         \Log::info('START apiBudgetRegister');
         $authorizationHeader = $request->header('Authorization');
+        \Log::info($authorizationHeader);
         if ($authorizationHeader && str_starts_with($authorizationHeader, 'Bearer ')) {
             $apiKey = substr($authorizationHeader, 7); // "Bearer " を除去
+        } else {
+            \Log::info("APIキーがない");
         }
         $budget_title = $request->title;
         $budget_budget = $request->budget;
