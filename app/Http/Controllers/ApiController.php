@@ -23,8 +23,7 @@ class ApiController extends Controller
         $budget_month = $request->month;
         $budget_year = $request->year;
         $budget_user_id = $request->user_id;
-        \Log::info('$apiKey == config("services.apiKey"):',$apiKey == config('services.apiKey') );
- 
+        
         if ($apiKey == config('services.apiKey')) {
             try {
                 $budget = Budget::create([
