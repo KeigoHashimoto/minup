@@ -10,8 +10,8 @@ class ApiController extends Controller
 {
     public function apiBudgetRegister(Request $request)
     {
+        \Log::info('START apiBudgetRegister');
         $authorizationHeader = $request->header('Authorization');
-
         if ($authorizationHeader && str_starts_with($authorizationHeader, 'Bearer ')) {
             $apiKey = substr($authorizationHeader, 7); // "Bearer " を除去
         }
@@ -20,6 +20,7 @@ class ApiController extends Controller
         $budget_month = $request->month;
         $budget_year = $request->year;
         $budget_user_id = $request->user_id;
+        \Log::info('$apiKey == config("services.apiKey"):',$apiKey == config('services.apiKey') );
  
         if ($apiKey == config('services.apiKey')) {
             try {
