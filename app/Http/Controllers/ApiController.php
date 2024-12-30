@@ -10,7 +10,11 @@ class ApiController extends Controller
 {
     public function apiBudgetRegister(Request $request)
     {
-        $apiKey = $request->apiKey;
+        $authorizationHeader = $request->header('Authorization');
+
+        if ($authorizationHeader && str_starts_with($authorizationHeader, 'Bearer ')) {
+            $apiKey = substr($authorizationHeader, 7); // "Bearer " を除去
+        }
         $budget_title = $request->title;
         $budget_budget = $request->budget;
         $budget_month = $request->month;
@@ -30,12 +34,18 @@ class ApiController extends Controller
             } catch (Exception $e) {
                 return response()->json($e);
             }
+        } else {
+            return response()->json($apiKey);
         }
     }
 
     public function apiExpensesRegister(Request $request)
     {
-        $apiKey = $request->apiKey;
+        $authorizationHeader = $request->header('Authorization');
+
+        if ($authorizationHeader && str_starts_with($authorizationHeader, 'Bearer ')) {
+            $apiKey = substr($authorizationHeader, 7); // "Bearer " を除去
+        }
         $expense_budget_id = $request->budget_id;
         $expense_content = $request->content;
         $expense_expense = $request->expense;
@@ -47,7 +57,7 @@ class ApiController extends Controller
                     'user_id' => $expense_user_id,
                     'budget_id' => $expense_budget_id,
                     'content' => $expense_content,
-                    'expense' => $expense_user_id
+                    'expense' => $expense_expense
                 ]);
                 return response()->json($budget);
             } catch (Exception $e) {
