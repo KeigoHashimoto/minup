@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Budget;
 use App\Models\Expense;
+use App\Models\Share;
 
 class ApiController extends Controller
 {
@@ -63,6 +64,29 @@ class ApiController extends Controller
                     'expense' => $expense_expense
                 ]);
                 return response()->json($budget);
+            } catch (Exception $e) {
+                return response()->json($e->message);
+            }
+        }
+    }
+
+    public function shareApi(Request $request)
+    {
+        \Log::info($request);
+        $authorizationHeader = $request->header('Authorization');
+
+        if ($authorizationHeader && str_starts_with($authorizationHeader, 'Bearer ')) {
+            $apiKey = substr($authorizationHeader, 7); // "Bearer " を除去
+        }
+        $shareid = $request->share_id;
+        $budgetId = $request->budget_id;
+
+        if ($apiKey == config('services.apiKey')) {
+            try {
+                $shareModel = new Share();
+                $result = $shareModel->shareApi($shareid, $budgetId);
+                \Log::info($result);
+                return response()->json();
             } catch (Exception $e) {
                 return response()->json($e);
             }

@@ -37,6 +37,28 @@ class Share extends Model
         }
     }
 
+    public function shareApi($userId,$budgetId){
+        $user = User::findOrFail($userId);
+
+        if($user==null){
+            return false;
+        }else{
+            $exists = $this->where('share_user_id',$user->id)
+            ->where('budget_id',$budgetId)
+            ->exists();
+
+            if($exists){
+                return false;
+            }
+
+            $this->create([
+                'budget_id'=>$budgetId,
+                'share_user_id'=>$user->id,
+            ]);
+            return true;
+        }
+    }
+
     public function shareRemove($budgetId){
         $user = Auth::user();
         $budget = Budget::findOrFail($budgetId);

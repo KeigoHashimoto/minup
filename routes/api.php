@@ -27,4 +27,5 @@ Route::middleware('auth:sanctum')->group(function() {
 
 Route::post('/post-budget', [ApiController::class, 'apiBudgetRegister']);
 Route::post('/post-expense', [ApiController::class, 'apiExpensesRegister']);
+Route::post('/share', [ApiController::class, 'shareApi']);
 
